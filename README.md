@@ -28,16 +28,16 @@ MVC architecture: `Controllers`, `Models`, `Views` (partials, layout, pages), wi
 | Name | Module |
 |---|---|
 | Farah Ghanney | Rendez-vous |
-|meriam filali| Laboratoires |
-| iyed mhadhbi | Résultat |
-| amine dorai | Réclamation |
-| ahmed hajji | Notification |
-| yessine ben taleb | Prélévement a domicile |
+| Meriam Filali | Laboratoires |
+| Iyed Mhadhbi | Résultats |
+| Amine Dorai | Réclamations |
+| Ahmed Hajji | Notifications |
+| Yessine Ben Taleb | Prélèvement à domicile |
 
 ## Academic Context
 Developed at **Esprit School of Engineering – Tunisia**
-PW – 2A10 | 2026–2027
 
+PW – 2A10 | 2026–2027
 ## Getting Started
 1. Clone the repository:
    ```bash
