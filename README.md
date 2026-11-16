@@ -31,7 +31,7 @@ MVC architecture: `Controllers`, `Models`, `Views` (partials, layout, pages), wi
 | Meriam Filali | Laboratoires |
 | Iyed Mhadhbi | Résultats |
 | Amine Dorai | Réclamations |
-| Ahmed Hajji | Notifications |
+| Ahmed Bnmakki | Notifications |
 | Yessine Ben Taleb | Prélèvement à domicile |
 
 ## Academic Context
