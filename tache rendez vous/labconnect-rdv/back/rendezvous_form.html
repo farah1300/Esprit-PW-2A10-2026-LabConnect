@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nouveau rendez-vous | Back Office LabConnect</title>
+  <link rel="icon" href="../public/img/logo.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="../public/css/variables.css" rel="stylesheet">
+  <link href="../public/css/back.css" rel="stylesheet">
+</head>
+<body>
+<aside class="sidebar">
+  <a class="brand" href="rendezvous.html"><img src="../public/img/logo.png" alt="logo"> LabConnect</a>
+  <ul class="nav flex-column">
+    <li><a class="nav-link active" href="rendezvous.html"><i class="bi bi-calendar-check"></i>Rendez-vous</a></li>
+    <li class="mt-4"><a class="nav-link" href="../front/rdv_start.html"><i class="bi bi-box-arrow-up-right"></i>Voir le site patient</a></li>
+  </ul>
+</aside>
+<div class="main-back">
+  <div class="topbar d-flex justify-content-between align-items-center">
+    <h5 class="mb-0 text-primary fw-bold">Nouveau rendez-vous</h5>
+    <div class="d-flex align-items-center gap-2"><span class="text-muted small">Administrateur</span><img src="../public/img/logo.png" width="36" height="36" class="rounded-circle" alt=""></div>
+  </div>
+  <main class="p-4">
+<div class="card p-4" style="max-width:720px"><form method="post" action="#" enctype="multipart/form-data"><div class="row g-3">
+<div class="col-12"><label class="form-label">Patient</label><select name="id_utilisateur" class="form-select" required><option value="">-- Choisir --</option><option value="2">Amira Ben Salah</option><option value="3">Youssef Trabelsi</option><option value="4">Salma Gharbi</option><option value="5">Mehdi Jlassi</option></select></div>
+<div class="col-md-6"><label class="form-label">Analyse</label><select name="id_analyse" class="form-select" required><option value="">-- Choisir --</option><option value="1">Bilan sanguin complet — 45.00 DT</option><option value="2">Analyse d&#x27;urine — 20.00 DT</option><option value="3">Bilan hormonal — 70.00 DT</option><option value="4">Sérologie hépatite B — 55.00 DT</option></select></div>
+<div class="col-md-6"><label class="form-label">Créneau</label><select name="id_creneau" class="form-select" required><option value="">-- Choisir --</option><option value="1">2026-11-26 · 09:00 – 09:30 (2 places)</option><option value="2">2026-11-26 · 10:30 – 11:00 (1 places)</option><option value="3">2026-11-27 · 14:00 – 14:30 (3 places)</option><option value="4">2026-11-28 · 16:00 – 16:30 (1 places)</option><option value="5">2026-12-02 · 11:00 – 11:30 (2 places)</option></select></div>
+<div class="col-md-6"><label class="form-label">Statut</label><select name="statut" class="form-select"><option value="en_attente">En attente</option><option value="confirme">Confirmé</option><option value="annule">Annulé</option><option value="present">Présent</option><option value="absent">Absent</option></select></div>
+<div class="col-md-6"><label class="form-label">QR code</label><input type="text" name="qr_code" class="form-control" placeholder="Généré automatiquement" readonly></div>
+<div class="col-12"><label class="form-label">Ordonnance</label><input type="file" name="ordonnance" class="form-control" accept=".pdf,.jpg,.png"></div>
+<div class="col-12 d-flex gap-2"><button class="btn btn-primary">Enregistrer</button><a href="rendezvous.html" class="btn btn-outline-primary">Annuler</a></div></div></form></div>
+  </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../public/js/app.js"></script>
+</body>
+</html>
