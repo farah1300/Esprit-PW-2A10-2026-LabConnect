@@ -1,0 +1,1737 @@
+/* ============================================================
+   LabConnect – Thème et surcharges
+   ------------------------------------------------------------
+   Toutes les couleurs et polices sont centralisées ici.
+   Modifiez les variables ci-dessous pour re-thémer le site.
+   ============================================================ */
+
+:root {
+  /* Couleurs de marque */
+  --lc-violet: #4A1E56;
+  --lc-violet-dark: #361540;
+  --lc-violet-soft: #6b3a7a;
+  --lc-violet-rgb: 74, 30, 86;
+  --lc-bleu: #A6CFF7;
+  --lc-bleu-soft: #EAF3FD;
+  --lc-bleu-light: #d6e9fb;
+  --lc-bleu-accent: #6aa7e0;
+
+  /* Neutres */
+  --lc-white: #ffffff;
+  --lc-surface: #faf7fb;
+  --lc-border: #ece4f0;
+  --lc-border-soft: #e4d9ea;
+  --lc-text: #3b2a42;
+  --lc-muted: #666666;
+  --lc-muted-light: #757575;
+  --lc-on-violet: #e2d6e8;
+  --lc-danger: #8a5a96;
+  --lc-error: #c0392b;
+  --lc-error-soft: #fbe3e0;
+
+  /* Typographie */
+  --lc-font-body: 'Inter', sans-serif;
+  --lc-font-heading: 'Poppins', sans-serif;
+}
+
+/* === Base & typographie === */
+body,
+p,
+label,
+input,
+select,
+textarea,
+.form-control {
+  font-family: var(--lc-font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.navbar-nav li a,
+.section-btn,
+button,
+.btn {
+  font-family: var(--lc-font-heading);
+}
+
+h2 {
+  color: var(--lc-violet);
+}
+
+a:hover,
+a:active,
+a:focus {
+  color: var(--lc-violet);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--lc-violet);
+}
+
+/* === Boutons === */
+.section-btn {
+  background: var(--lc-violet);
+  color: var(--lc-white);
+}
+
+.section-btn:hover {
+  background: var(--lc-violet-dark);
+  color: var(--lc-white);
+}
+
+.btn-gray {
+  background: var(--lc-white);
+  color: var(--lc-violet);
+}
+
+.btn-gray:hover {
+  background: var(--lc-bleu);
+  color: var(--lc-violet);
+}
+
+.btn-blue {
+  background: var(--lc-bleu);
+  color: var(--lc-violet);
+}
+
+.btn-blue:hover {
+  background: var(--lc-white);
+  color: var(--lc-violet);
+}
+
+/* === Barre supérieure === */
+header span i {
+  color: var(--lc-violet);
+}
+
+header p {
+  color: var(--lc-violet);
+  font-weight: 500;
+}
+
+/* === Navigation === */
+.navbar-default .navbar-brand {
+  display: flex;
+  align-items: center;
+  height: auto;
+  padding: 2px 15px;
+  font-family: var(--lc-font-heading);
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--lc-violet);
+  letter-spacing: -.5px;
+}
+
+.navbar-default .navbar-brand img {
+  height: 46px;
+  width: auto;
+  margin-right: 10px;
+}
+
+.navbar-default .navbar-brand span {
+  color: var(--lc-bleu-accent);
+}
+
+.navbar-default .navbar-nav li a {
+  color: var(--lc-text);
+}
+
+.navbar-default .navbar-nav > li a:hover {
+  color: var(--lc-violet) !important;
+}
+
+.navbar-default .navbar-nav li.appointment-btn a {
+  background: var(--lc-violet);
+}
+
+.navbar-default .navbar-nav li.appointment-btn a:hover {
+  background: var(--lc-bleu);
+  color: var(--lc-violet) !important;
+}
+
+/* === Hero / slider === */
+.slider .caption {
+  background: linear-gradient(120deg, rgba(var(--lc-violet-rgb), .78), rgba(var(--lc-violet-rgb), .25));
+}
+
+#home h3 {
+  color: var(--lc-bleu);
+}
+
+/* === À propos === */
+#about {
+  background: linear-gradient(135deg, var(--lc-bleu-soft) 0%, var(--lc-white) 60%);
+  padding-top: 110px;
+  padding-bottom: 110px;
+}
+
+#about .about-logo {
+  max-width: 260px;
+  margin: 0 auto;
+  display: block;
+}
+
+.objectifs {
+  margin-top: 25px;
+}
+
+.objectif {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+.objectif .fa {
+  flex: 0 0 46px;
+  height: 46px;
+  line-height: 46px;
+  text-align: center;
+  border-radius: 50%;
+  background: var(--lc-violet);
+  color: var(--lc-white);
+  font-size: 20px;
+  margin-right: 15px;
+}
+
+.objectif h5 {
+  margin: 0 0 2px;
+  color: var(--lc-violet);
+  font-size: 16px;
+}
+
+.objectif p {
+  margin: 0;
+}
+
+/* === Services / modules === */
+#service {
+  background: var(--lc-violet);
+  text-align: center;
+  padding: 100px 0 70px;
+}
+
+#service h2 {
+  color: var(--lc-white);
+}
+
+#service .section-sub {
+  color: var(--lc-bleu);
+  margin-bottom: 45px;
+}
+
+#service .service-thumb {
+  padding: 0 18px;
+  margin-bottom: 40px;
+}
+
+#service .fa {
+  background: var(--lc-bleu);
+  color: var(--lc-violet);
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  font-size: 40px;
+  transition: transform .3s;
+}
+
+#service .service-thumb:hover .fa {
+  transform: translateY(-6px) rotate(-4deg);
+}
+
+#service h4 {
+  color: var(--lc-white);
+  font-size: 1.4em;
+  margin-top: 10px;
+}
+
+#service p {
+  color: var(--lc-on-violet);
+}
+
+/* === Laboratoires === */
+#team {
+  background: var(--lc-white);
+}
+
+.lab-thumb {
+  background: var(--lc-white);
+  border: 1px solid var(--lc-border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 30px;
+  transition: box-shadow .3s, transform .3s;
+}
+
+.lab-thumb:hover {
+  box-shadow: 0 10px 30px rgba(var(--lc-violet-rgb), .15);
+  transform: translateY(-4px);
+}
+
+.lab-thumb img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+}
+
+.lab-info {
+  padding: 22px 26px 26px;
+}
+
+.lab-info h3 {
+  color: var(--lc-violet);
+  font-size: 1.4em;
+  margin-bottom: 4px;
+}
+
+.lab-info .lab-ville {
+  color: var(--lc-bleu-accent);
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.lab-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0 18px;
+}
+
+.lab-info ul li {
+  font-size: 13px;
+  color: var(--lc-muted);
+  padding: 3px 0;
+}
+
+.lab-info ul li .fa {
+  color: var(--lc-violet);
+  width: 20px;
+}
+
+.lab-info .btn-lab {
+  display: inline-block;
+  background: var(--lc-bleu);
+  color: var(--lc-violet);
+  font-weight: 600;
+  font-size: 13px;
+  padding: 10px 18px;
+  border-radius: 3px;
+}
+
+.lab-info .btn-lab:hover {
+  background: var(--lc-violet);
+  color: var(--lc-white);
+}
+
+/* === Comment ça marche === */
+#news {
+  background: var(--lc-bleu-soft);
+}
+
+.step-thumb {
+  background: var(--lc-white);
+  border-radius: 10px;
+  padding: 40px 28px;
+  box-shadow: 0 4px 18px rgba(var(--lc-violet-rgb), .07);
+  margin-bottom: 25px;
+}
+
+.step-thumb .step-num {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  line-height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--lc-bleu), var(--lc-bleu-light));
+  color: var(--lc-violet);
+  font-family: var(--lc-font-heading);
+  font-weight: 700;
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.step-thumb h3 {
+  color: var(--lc-violet);
+  font-size: 1.3em;
+  margin-bottom: 10px;
+}
+
+/* === Rendez-vous === */
+#appointment {
+  background: var(--lc-white);
+}
+
+#appointment label {
+  color: var(--lc-violet);
+}
+
+#appointment .form-control {
+  background: var(--lc-bleu-soft);
+}
+
+#appointment .form-control:focus {
+  box-shadow: 0 0 0 2px var(--lc-bleu);
+}
+
+#appointment button#cf-submit {
+  background: var(--lc-violet);
+}
+
+#appointment button#cf-submit:hover {
+  background: var(--lc-bleu);
+  color: var(--lc-violet);
+}
+
+#appointment .home-check {
+  margin: -2px 0 15px;
+  font-weight: 500;
+}
+
+#appointment .home-check input {
+  height: auto;
+  margin-right: 6px;
+}
+
+.form-ok {
+  display: none;
+  background: var(--lc-bleu-soft);
+  border-left: 4px solid var(--lc-violet);
+  color: var(--lc-violet);
+  padding: 12px 16px;
+  margin-top: 15px;
+  border-radius: 3px;
+}
+
+.form-err {
+  display: none;
+  background: var(--lc-error-soft);
+  border-left: 4px solid var(--lc-error);
+  color: var(--lc-error);
+  padding: 12px 16px;
+  margin-top: 15px;
+  border-radius: 3px;
+}
+
+/* === Carte === */
+.map-embed {
+  display: block;
+  width: 100%;
+  height: 350px;
+  border: 0;
+}
+
+/* === Pied de page === */
+footer {
+  background: var(--lc-surface);
+}
+
+footer h4 {
+  color: var(--lc-violet);
+}
+
+footer a:hover {
+  color: var(--lc-violet);
+}
+
+.contact-info .fa {
+  background: var(--lc-violet);
+}
+
+.footer-logo {
+  height: 50px;
+  margin-bottom: 12px;
+}
+
+.odd-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.odd-list li {
+  font-size: 13px;
+  color: var(--lc-muted-light);
+  padding: 5px 0;
+  border-bottom: 1px dashed var(--lc-border-soft);
+}
+
+.odd-list li b {
+  color: var(--lc-violet);
+}
+
+.social-icon li a:hover {
+  background: var(--lc-violet);
+}
+
+.angle-up-btn a:hover {
+  background: var(--lc-violet);
+}
+
+/* === Page conseil / article === */
+#news-detail {
+  background: var(--lc-bleu-soft);
+}
+
+#news-detail blockquote {
+  border-left: 5px solid var(--lc-violet);
+  font-size: 15px;
+  color: var(--lc-violet);
+}
+
+.news-author {
+  margin-bottom: 24px;
+}
+
+.news-categories ul,
+.news-tags ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.news-tags li a {
+  background: var(--lc-violet);
+}
+
+.news-tags li a:hover {
+  background: var(--lc-bleu);
+  color: var(--lc-violet);
+}
+
+.news-social-share .btn-primary {
+  background: var(--lc-violet);
+}
+
+.news-social-share .btn-success {
+  background: var(--lc-bleu-accent);
+}
+
+.news-social-share .btn-danger {
+  background: var(--lc-danger);
+}
+
+/* === Responsive === */
+@media only screen and (max-width: 991px) {
+  #about {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .navbar-default .navbar-brand img {
+    height: 40px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #about {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  #service {
+    padding: 70px 0 40px;
+  }
+
+  #service .fa {
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 32px;
+  }
+
+  .lab-thumb img {
+    height: 170px;
+  }
+
+  .step-thumb {
+    padding: 30px 22px;
+  }
+
+  .map-embed {
+    height: 280px;
+  }
+}
+
+/* ============================================================
+   ESPACE CONNECTÉ – header, sidebar, contenu, footer
+   ------------------------------------------------------------
+   Ces styles complètent le template public. Ils ne sont chargés
+   que par includes/header.php, donc par les pages protégées.
+   ============================================================ */
+
+.app-body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--lc-surface);
+}
+
+/* --- Barre supérieure --- */
+header.app-topbar {
+  display: block;
+  height: auto;
+  background: var(--lc-violet);
+  border-bottom: 0;
+  color: var(--lc-white);
+}
+
+.app-topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 34px;
+}
+
+.app-topbar p {
+  margin: 0;
+  color: var(--lc-white);
+  font-size: 12.5px;
+}
+
+.app-topbar .fa {
+  margin-right: 4px;
+  color: var(--lc-bleu);
+}
+
+.app-topbar-meta {
+  white-space: nowrap;
+}
+
+.app-role-badge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 9px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, .14);
+  color: var(--lc-white);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+}
+
+/* --- Barre de navigation --- */
+.app-navbar {
+  background: var(--lc-white);
+  border-bottom: 1px solid var(--lc-border);
+  box-shadow: 0 2px 10px rgba(var(--lc-violet-rgb), .04);
+}
+
+.app-navbar-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 66px;
+}
+
+.app-menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--lc-border);
+  border-radius: 8px;
+  background: var(--lc-white);
+  color: var(--lc-violet);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.app-menu-toggle:hover {
+  background: var(--lc-bleu-soft);
+}
+
+.app-brand {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--lc-font-heading);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -.5px;
+  color: var(--lc-violet);
+}
+
+.app-brand:hover {
+  color: var(--lc-violet);
+}
+
+.app-brand img {
+  height: 44px;
+  width: auto;
+  margin-right: 10px;
+}
+
+.app-brand span {
+  color: var(--lc-bleu-accent);
+}
+
+.app-nav-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.app-nav-name {
+  color: var(--lc-text);
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+.app-nav-name .fa {
+  color: var(--lc-violet-soft);
+}
+
+.app-logout {
+  border-color: var(--lc-violet);
+  border-radius: 6px;
+  background: var(--lc-violet);
+  color: var(--lc-white);
+  font-weight: 500;
+}
+
+.app-logout:hover,
+.app-logout:focus {
+  border-color: var(--lc-violet-dark);
+  background: var(--lc-violet-dark);
+  color: var(--lc-white);
+}
+
+/* --- Messages flash --- */
+.app-flash {
+  padding-top: 16px;
+}
+
+.app-flash .alert {
+  margin-bottom: 0;
+  border-radius: 8px;
+}
+
+/* --- Grille principale --- */
+.app-shell {
+  flex: 1 0 auto;
+  width: 100%;
+  min-width: 0; /* empêche un tableau large de forcer la page à déborder sur mobile */
+  padding-top: 24px;
+  padding-bottom: 40px;
+}
+
+/* --- Sidebar --- */
+.app-sidebar {
+  margin-bottom: 24px;
+}
+
+.app-sidebar-inner {
+  padding: 16px 12px;
+  border: 1px solid var(--lc-border);
+  border-radius: 10px;
+  background: var(--lc-white);
+}
+
+.app-sidebar-title {
+  margin: 0 8px 10px;
+  color: var(--lc-muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.app-menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.app-menu li {
+  margin: 2px 0;
+}
+
+.app-menu a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 7px;
+  color: var(--lc-text);
+  font-family: var(--lc-font-body);
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+.app-menu a .fa {
+  width: 18px;
+  color: var(--lc-violet-soft);
+  font-size: 15px;
+  text-align: center;
+}
+
+.app-menu a:hover {
+  background: var(--lc-bleu-soft);
+  color: var(--lc-violet);
+}
+
+.app-menu li.active a {
+  background: var(--lc-violet);
+  color: var(--lc-white);
+}
+
+.app-menu li.active a .fa {
+  color: var(--lc-white);
+}
+
+.app-menu-heading {
+  margin: 18px 8px 6px !important;
+  color: var(--lc-muted);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+/* --- Contenu --- */
+.app-content {
+  margin-bottom: 24px;
+}
+
+.app-page-title {
+  margin: 0 0 6px;
+  color: var(--lc-violet);
+  font-size: 27px;
+  letter-spacing: -.5px;
+}
+
+.app-page-sub {
+  margin-bottom: 24px;
+  color: var(--lc-muted);
+}
+
+.app-card {
+  padding: 24px;
+  margin-bottom: 24px;
+  border: 1px solid var(--lc-border);
+  border-radius: 10px;
+  background: var(--lc-white);
+}
+
+.app-card h2 {
+  margin-top: 0;
+  color: var(--lc-violet);
+  font-size: 20px;
+}
+
+.app-card h3 {
+  margin-top: 0;
+  color: var(--lc-violet);
+  font-size: 16px;
+}
+
+/* --- Raccourcis du tableau de bord --- */
+.app-shortcuts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.app-shortcut {
+  display: block;
+  padding: 22px;
+  border: 1px solid var(--lc-border);
+  border-radius: 10px;
+  background: var(--lc-white);
+  color: var(--lc-text);
+  transition: box-shadow .25s, transform .25s, border-color .25s;
+}
+
+.app-shortcut:hover {
+  border-color: var(--lc-bleu);
+  box-shadow: 0 10px 26px rgba(var(--lc-violet-rgb), .12);
+  color: var(--lc-text);
+  transform: translateY(-3px);
+}
+
+.app-shortcut .fa {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 14px;
+  border-radius: 10px;
+  background: var(--lc-bleu-soft);
+  color: var(--lc-violet);
+  font-size: 20px;
+}
+
+.app-shortcut h3 {
+  margin: 0 0 6px;
+  color: var(--lc-violet);
+  font-size: 16px;
+}
+
+.app-shortcut p {
+  margin: 0;
+  color: var(--lc-muted);
+  font-size: 13px;
+  line-height: 20px;
+}
+
+/* --- Informations du compte --- */
+.app-account {
+  margin: 0;
+}
+
+.app-account dt {
+  color: var(--lc-muted);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.app-account dd {
+  margin: 2px 0 12px;
+  color: var(--lc-text);
+  font-size: 14px;
+}
+
+.app-account dd:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Footer compact --- */
+footer.app-footer {
+  flex-shrink: 0;
+  padding: 18px 0;
+  border-top: 1px solid var(--lc-border);
+  background: var(--lc-white);
+}
+
+.app-footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.app-footer p {
+  margin: 0;
+  color: var(--lc-muted);
+  font-size: 12.5px;
+}
+
+.app-footer a {
+  color: var(--lc-violet);
+  font-weight: 500;
+}
+
+.app-footer-links span {
+  margin: 0 6px;
+  color: var(--lc-border-soft);
+}
+
+/* --- Accessibilité clavier --- */
+.app-menu a:focus,
+.app-shortcut:focus,
+.app-logout:focus {
+  outline: 2px solid var(--lc-bleu-accent);
+  outline-offset: 2px;
+}
+
+/* --- Responsive --- */
+@media (min-width: 992px) {
+  .app-sidebar-inner {
+    position: sticky;
+    top: 20px;
+  }
+}
+
+@media (max-width: 991px) {
+  .app-menu-toggle {
+    display: inline-flex;
+  }
+
+  .app-sidebar {
+    display: none;
+  }
+
+  .app-sidebar.open {
+    display: block;
+  }
+
+  .app-nav-name {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .app-topbar-inner {
+    justify-content: center;
+  }
+
+  .app-topbar-meta {
+    display: none;
+  }
+
+  .app-navbar-inner {
+    min-height: 58px;
+  }
+
+  .app-brand {
+    font-size: 19px;
+  }
+
+  .app-brand img {
+    height: 38px;
+  }
+
+  .app-logout-text {
+    display: none;
+  }
+
+  .app-flash {
+    padding-top: 12px;
+  }
+}
+
+/* ============================================================
+   PAGES DE GESTION – en-tête, statistiques, tableau, filtres
+   ------------------------------------------------------------
+   Classes réutilisables par les pages Utilisateurs et
+   Laboratoires (listes, recherche, actions).
+   ============================================================ */
+
+/* --- En-tête de page + bouton d'action --- */
+.app-page-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.app-page-head .app-page-title {
+  margin-bottom: 6px;
+}
+
+.app-page-head .app-page-sub {
+  margin-bottom: 0;
+}
+
+.app-head-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.app-preview-badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 3px 9px;
+  border-radius: 20px;
+  background: var(--lc-bleu-soft);
+  color: var(--lc-violet);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.app-btn-primary {
+  border-color: var(--lc-violet);
+  border-radius: 6px;
+  background: var(--lc-violet);
+  color: var(--lc-white);
+  font-weight: 500;
+}
+
+.app-btn-primary:hover,
+.app-btn-primary:focus {
+  border-color: var(--lc-violet-dark);
+  background: var(--lc-violet-dark);
+  color: var(--lc-white);
+}
+
+.app-btn-outline {
+  border: 1px solid var(--lc-border);
+  border-radius: 6px;
+  background: var(--lc-white);
+  color: var(--lc-text);
+  font-weight: 500;
+}
+
+.app-btn-outline:hover,
+.app-btn-outline:focus {
+  border-color: var(--lc-bleu);
+  background: var(--lc-bleu-soft);
+  color: var(--lc-violet);
+}
+
+/* --- Cartes de statistiques --- */
+.app-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.app-stat {
+  padding: 18px 20px;
+  border: 1px solid var(--lc-border);
+  border-left: 4px solid var(--lc-violet);
+  border-radius: 10px;
+  background: var(--lc-white);
+}
+
+.app-stat small {
+  display: block;
+  color: var(--lc-muted);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.app-stat strong {
+  display: block;
+  margin-top: 4px;
+  color: var(--lc-violet);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.app-stat.blue {
+  border-left-color: var(--lc-bleu-accent);
+}
+
+.app-stat.green {
+  border-left-color: #2e8b57;
+}
+
+.app-stat.gold {
+  border-left-color: #d98a00;
+}
+
+/* --- Carte contenant un tableau --- */
+.app-card-table {
+  padding: 0;
+  overflow: hidden;
+}
+
+.app-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--lc-border);
+}
+
+.app-search {
+  position: relative;
+  flex: 1 1 280px;
+  max-width: 440px;
+}
+
+.app-search .fa {
+  position: absolute;
+  top: 50%;
+  left: 13px;
+  color: var(--lc-muted);
+  font-size: 14px;
+  transform: translateY(-50%);
+}
+
+.app-search .form-control {
+  height: 40px;
+  padding-left: 36px;
+  border-color: var(--lc-border);
+  border-radius: 7px;
+  box-shadow: none;
+}
+
+.app-search .form-control:focus {
+  border-color: var(--lc-bleu-accent);
+  box-shadow: 0 0 0 2px var(--lc-bleu-soft);
+}
+
+.app-filter {
+  width: auto;
+  min-width: 165px;
+  height: 40px;
+  border-color: var(--lc-border);
+  border-radius: 7px;
+  box-shadow: none;
+}
+
+.app-filter:focus {
+  border-color: var(--lc-bleu-accent);
+  box-shadow: 0 0 0 2px var(--lc-bleu-soft);
+}
+
+/* --- Tableau --- */
+.app-table {
+  margin-bottom: 0;
+  font-size: 13.5px;
+}
+
+.app-table > thead > tr > th {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--lc-border);
+  background: #faf8fb;
+  color: var(--lc-muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.app-table > tbody > tr > td {
+  padding: 14px 16px;
+  border-top: 1px solid var(--lc-border);
+  color: var(--lc-text);
+  vertical-align: middle;
+}
+
+.app-table > tbody > tr:hover > td {
+  background: var(--lc-surface);
+}
+
+.app-lab-name {
+  display: block;
+  color: var(--lc-violet);
+  font-weight: 600;
+}
+
+.app-lab-email {
+  display: block;
+  margin-top: 2px;
+  color: var(--lc-muted);
+  font-size: 12px;
+}
+
+.app-lab-phone {
+  white-space: nowrap;
+}
+
+.app-badge-count {
+  display: inline-block;
+  min-width: 26px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  background: var(--lc-bleu-soft);
+  color: var(--lc-violet);
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.app-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.app-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--lc-border);
+  border-radius: 6px;
+  background: var(--lc-white);
+  color: var(--lc-violet-soft);
+  font-size: 13px;
+}
+
+.app-action:hover,
+.app-action:focus {
+  border-color: var(--lc-bleu);
+  background: var(--lc-bleu-soft);
+  color: var(--lc-violet);
+  outline: none;
+}
+
+.app-action.danger:hover,
+.app-action.danger:focus {
+  border-color: var(--lc-error);
+  background: var(--lc-error-soft);
+  color: var(--lc-error);
+}
+
+.app-empty {
+  padding: 34px 20px;
+  color: var(--lc-muted);
+  font-size: 13.5px;
+  text-align: center;
+}
+
+.app-empty .fa {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--lc-border-soft);
+  font-size: 28px;
+}
+
+.app-note {
+  margin: 0;
+  padding: 12px 18px;
+  border-top: 1px solid var(--lc-border);
+  background: #faf8fb;
+  color: var(--lc-muted);
+  font-size: 12px;
+}
+
+/* --- Responsive des pages de gestion --- */
+@media (max-width: 767px) {
+  .app-page-head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .app-head-actions .btn {
+    width: 100%;
+  }
+
+  .app-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .app-stat {
+    padding: 14px 16px;
+  }
+
+  .app-stat strong {
+    font-size: 23px;
+  }
+
+  .app-toolbar {
+    padding: 14px;
+  }
+
+  .app-search {
+    max-width: none;
+  }
+
+  .app-filter {
+    width: 100%;
+  }
+
+  .app-table .hide-sm {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   MODULE 1 – AUTHENTIFICATION, FORMULAIRES ET FICHES
+   ============================================================ */
+
+/* --- Erreurs de formulaire (cohérentes avec le Validator PHP) --- */
+.help-block:empty {
+  display: none;
+}
+
+.form-group.has-error .form-control {
+  border-color: var(--lc-error);
+  box-shadow: 0 0 0 2px var(--lc-error-soft);
+}
+
+.form-group.has-error .control-label,
+.form-group.has-error .help-block {
+  color: var(--lc-error);
+}
+
+/* --- Pages publiques : connexion et inscription --- */
+.auth-body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--lc-surface);
+}
+
+.auth-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.auth-brand-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 48px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(166, 207, 247, .22), transparent 45%),
+    linear-gradient(150deg, var(--lc-violet) 0%, #2c1136 60%, #1b0a22 100%);
+  color: var(--lc-white);
+}
+
+.auth-brand-panel::after {
+  position: absolute;
+  right: -90px;
+  bottom: -110px;
+  width: 320px;
+  height: 320px;
+  border: 1px solid rgba(255, 255, 255, .10);
+  border-radius: 50%;
+  content: "";
+}
+
+.auth-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  width: fit-content;
+  color: var(--lc-white);
+  font-family: var(--lc-font-heading);
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.auth-brand:hover,
+.auth-brand:focus {
+  color: var(--lc-white);
+  text-decoration: none;
+}
+
+.auth-brand img {
+  width: auto;
+  height: 52px;
+}
+
+.auth-brand span {
+  color: var(--lc-bleu);
+}
+
+.auth-brand-panel h1 {
+  max-width: 440px;
+  margin: 0 0 16px;
+  color: var(--lc-white);
+  font-size: 38px;
+  line-height: 1.2;
+  letter-spacing: -.8px;
+}
+
+.auth-brand-panel > div > p {
+  max-width: 430px;
+  margin: 0;
+  color: var(--lc-on-violet);
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.auth-benefits {
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.auth-benefits li {
+  display: flex;
+  gap: 11px;
+  margin-bottom: 13px;
+  color: #eadff0;
+  font-size: 13.5px;
+}
+
+.auth-benefits .fa {
+  margin-top: 3px;
+  color: var(--lc-bleu);
+}
+
+.auth-copyright {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  color: #b9a6c1;
+  font-size: 12px;
+}
+
+.auth-form-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 460px;
+  padding: 34px 32px;
+  border: 1px solid var(--lc-border);
+  border-radius: 14px;
+  background: var(--lc-white);
+  box-shadow: 0 18px 50px rgba(var(--lc-violet-rgb), .10);
+}
+
+.auth-card h2 {
+  margin: 0 0 6px;
+  color: var(--lc-violet);
+  font-size: 26px;
+}
+
+.auth-sub {
+  margin-bottom: 22px;
+  color: var(--lc-muted);
+  font-size: 13.5px;
+}
+
+.auth-card .form-group {
+  margin-bottom: 17px;
+}
+
+.auth-card .control-label {
+  color: var(--lc-text);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.auth-card .form-control {
+  height: 42px;
+  border-color: var(--lc-border);
+  border-radius: 7px;
+  box-shadow: none;
+}
+
+.auth-card .form-control:focus {
+  border-color: var(--lc-bleu-accent);
+  box-shadow: 0 0 0 2px var(--lc-bleu-soft);
+}
+
+.auth-card .btn-block {
+  padding: 11px 16px;
+  font-size: 15px;
+}
+
+.auth-password {
+  position: relative;
+}
+
+.auth-password .form-control {
+  padding-right: 46px;
+}
+
+.auth-password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--lc-muted);
+  font-size: 14px;
+  transform: translateY(-50%);
+}
+
+.auth-password-toggle:hover,
+.auth-password-toggle:focus {
+  background: var(--lc-bleu-soft);
+  color: var(--lc-violet);
+  outline: none;
+}
+
+.auth-note {
+  margin: 0 0 18px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: var(--lc-bleu-soft);
+  color: #31465c;
+  font-size: 12.5px;
+  line-height: 19px;
+}
+
+.auth-alt {
+  margin: 20px 0 0;
+  color: var(--lc-muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+.auth-back {
+  margin: 12px 0 0;
+  font-size: 12.5px;
+  text-align: center;
+}
+
+/* --- Formulaires de gestion --- */
+.app-form .form-group {
+  margin-bottom: 18px;
+}
+
+.app-form .control-label {
+  color: var(--lc-text);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.app-form .form-control {
+  height: 40px;
+  border-color: var(--lc-border);
+  border-radius: 7px;
+  box-shadow: none;
+}
+
+.app-form select.form-control {
+  height: 40px;
+}
+
+.app-form .form-control:focus {
+  border-color: var(--lc-bleu-accent);
+  box-shadow: 0 0 0 2px var(--lc-bleu-soft);
+}
+
+.app-form .form-hint {
+  margin-top: 5px;
+  color: var(--lc-muted);
+  font-size: 12px;
+}
+
+.app-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* --- Badges de rôle et de statut --- */
+.app-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
+
+.app-badge.admin {
+  background: var(--lc-violet);
+  color: var(--lc-white);
+}
+
+.app-badge.patient {
+  background: var(--lc-bleu-soft);
+  color: var(--lc-violet);
+}
+
+.app-badge.active {
+  background: #e3f4ea;
+  color: #1e7a46;
+}
+
+.app-badge.inactive {
+  background: var(--lc-error-soft);
+  color: var(--lc-error);
+}
+
+/* --- Actions dans les tableaux --- */
+.app-actions form {
+  margin: 0;
+}
+
+.app-actions .app-action[disabled] {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+.app-actions .app-action[disabled]:hover {
+  border-color: var(--lc-border);
+  background: var(--lc-white);
+  color: var(--lc-violet-soft);
+}
+
+/* --- Fiche utilisateur --- */
+.app-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 20px 26px;
+}
+
+.app-detail-item {
+  padding-bottom: 14px;
+  border-bottom: 1px dashed var(--lc-border);
+}
+
+.app-detail-label {
+  display: block;
+  color: var(--lc-muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.app-detail-value {
+  display: block;
+  margin-top: 5px;
+  color: var(--lc-text);
+  font-size: 14px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+/* --- Sélecteur de rôle dans la page Rôles --- */
+.app-role-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 230px;
+}
+
+.app-role-form .form-control {
+  height: 34px;
+  min-width: 130px;
+  border-color: var(--lc-border);
+  border-radius: 6px;
+  box-shadow: none;
+}
+
+.app-role-form .form-control:focus {
+  border-color: var(--lc-bleu-accent);
+  box-shadow: 0 0 0 2px var(--lc-bleu-soft);
+}
+
+@media (max-width: 900px) {
+  .auth-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-brand-panel {
+    display: none;
+  }
+
+  .auth-form-panel {
+    min-height: 100vh;
+    padding: 28px 16px;
+  }
+}
+
+@media (max-width: 520px) {
+  .auth-card {
+    padding: 26px 20px;
+  }
+}

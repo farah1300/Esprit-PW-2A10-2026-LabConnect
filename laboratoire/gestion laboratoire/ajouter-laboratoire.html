@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="LabConnect – gestion des laboratoires d'analyses médicales.">
+  <meta name="theme-color" content="#4A1E56">
+  <title>Ajouter un laboratoire – LabConnect</title>
+
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+
+  <!-- Polices du template -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+
+  <!-- Styles du template + surcharges LabConnect -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/tooplate-style.css">
+  <link rel="stylesheet" href="assets/css/labconnect.css">
+
+  <noscript>
+    <style>
+      @media (max-width: 991px) {
+        .app-sidebar { display: block !important; }
+        .app-menu-toggle { display: none !important; }
+      }
+    </style>
+  </noscript>
+</head>
+<body class="app-body">
+
+  <!-- Barre supérieure -->
+  <header class="app-topbar">
+    <div class="container-fluid">
+      <div class="app-topbar-inner">
+        <p><i class="fa fa-heartbeat" aria-hidden="true"></i> LabConnect — Votre santé, simplifiée</p>
+        <p class="app-topbar-meta">
+          <i class="fa fa-info-circle" aria-hidden="true"></i> Aperçu statique
+          <!-- DYNAMIQUE : libellé du rôle -->
+          <span class="app-role-badge">Administration</span>
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="app-navbar" aria-label="Navigation principale">
+    <div class="container-fluid app-navbar-inner">
+      <button type="button" class="app-menu-toggle" id="sidebarToggle"
+              aria-controls="appSidebar" aria-expanded="false" aria-label="Ouvrir le menu">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+      </button>
+
+      <a class="app-brand" href="laboratoires.html">
+        <img src="assets/img/logo.png" alt="" aria-hidden="true">
+        Lab<span>Connect</span>
+      </a>
+
+      <div class="app-nav-user">
+        <span class="app-nav-name">
+          <i class="fa fa-user-o" aria-hidden="true"></i>
+          <!-- DYNAMIQUE : nom_complet_utilisateur -->
+        </span>
+        <!-- Aperçu : ce lien deviendra logout.php dans la version PHP. -->
+        <a class="btn btn-sm app-logout" href="#" onclick="return false;" title="Aperçu statique">
+          <i class="fa fa-sign-out" aria-hidden="true"></i> <span class="app-logout-text">Déconnexion</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Grille : sidebar + contenu -->
+  <div class="container-fluid app-shell">
+    <div class="row">
+
+      <!-- Sidebar (même structure que includes/sidebar.php) -->
+      <aside class="col-md-3 app-sidebar" id="appSidebar" aria-label="Menu latéral">
+        <div class="app-sidebar-inner">
+          <p class="app-sidebar-title">Navigation</p>
+
+          <ul class="app-menu">
+            <li><a href="#" onclick="return false;"><i class="fa fa-tachometer" aria-hidden="true"></i> Tableau de bord</a></li>
+
+            <!-- MODULE 1 : UTILISATEURS (Admin) -->
+            <!-- ADMIN SEULEMENT -->
+            <li class="app-menu-heading"> USER </li>
+            <li><a href="#" onclick="return false;"><i class="fa fa-users" aria-hidden="true"></i> Utilisateurs</a></li>
+            <li><a href="#" onclick="return false;"><i class="fa fa-shield" aria-hidden="true"></i> Rôles</a></li>
+
+            <!-- MODULE 2 : LABORATOIRES (Admin) -->
+            <li class="app-menu-heading">Module 2 — Laboratoires</li>
+            <li class="active"><a href="laboratoires.html" aria-current="page"><i class="fa fa-flask" aria-hidden="true"></i> Laboratoires</a></li>
+            <li><a href="catalogue.html"><i class="fa fa-list-alt" aria-hidden="true"></i> Catalogue des analyses</a></li>
+            <!-- ADMIN SEULEMENT -->
+            <li><a href="validation.html"><i class="fa fa-check-square-o" aria-hidden="true"></i> Validation</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Contenu de la page -->
+      <!-- ADMIN SEULEMENT -->
+      <main class="col-md-9 app-content" id="contenu">
+
+        <div class="app-page-head">
+          <div>
+            <h1 class="app-page-title">Ajouter un laboratoire <span class="app-preview-badge">Aperçu</span></h1>
+            <p class="app-page-sub">Renseignez les coordonnées du nouveau laboratoire partenaire.</p>
+          </div>
+          <div class="app-head-actions">
+            <a href="laboratoires.html" class="btn app-btn-outline">
+              <i class="fa fa-arrow-left" aria-hidden="true"></i> Retour à la liste
+            </a>
+          </div>
+        </div>
+
+        <div class="app-card">
+          <h2>Informations du laboratoire</h2>
+          <p class="app-page-sub">
+            Les champs marqués d'un <span class="app-required" aria-hidden="true">*</span>
+            sont obligatoires.
+          </p>
+
+          <!-- Résumé des erreurs de validation -->
+          <div class="form-err" id="formErrors" role="alert">
+            <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+            Veuillez corriger les champs indiqués ci-dessous.
+          </div>
+
+          <!-- Confirmation d'aperçu -->
+          <div class="form-ok" id="formSuccess" role="status" aria-live="polite" tabindex="-1">
+            <i class="fa fa-check-circle" aria-hidden="true"></i>
+            Aperçu statique : le laboratoire serait enregistré après validation serveur.
+          </div>
+
+          <!-- Aperçu : ce formulaire deviendra ajouter-laboratoire.php en PHP. -->
+          <form action="#" method="post" class="app-form" id="labForm" novalidate>
+            <!-- DYNAMIQUE : jeton CSRF (csrfField() en PHP) -->
+            <input type="hidden" name="csrf_token" value="apercu-token-csrf">
+
+            <div class="row">
+              <div class="col-sm-8">
+                <div class="form-group">
+                  <label class="control-label" for="nom">
+                    Nom <span class="app-required" aria-hidden="true">*</span>
+                  </label>
+                  <input type="text" class="form-control" id="nom" name="nom"
+                         maxlength="150" autocomplete="organization"
+                         placeholder="Ex. Laboratoire El Manar"
+                         aria-describedby="nom-error" required>
+                  <span class="help-block" id="nom-error"></span>
+                </div>
+              </div>
+
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label class="control-label" for="ville">
+                    Ville <span class="app-required" aria-hidden="true">*</span>
+                  </label>
+                  <!-- DYNAMIQUE : liste des villes disponibles -->
+                  <select class="form-control" id="ville" name="ville"
+                          autocomplete="address-level2"
+                          aria-describedby="ville-error" required>
+                    <option value="">— Choisir une ville —</option>
+                    <option value="Tunis">Tunis</option>
+                    <option value="Sfax">Sfax</option>
+                    <option value="Sousse">Sousse</option>
+                    <option value="Nabeul">Nabeul</option>
+                    <option value="Ariana">Ariana</option>
+                  </select>
+                  <span class="help-block" id="ville-error"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label" for="adresse">
+                Adresse <span class="app-required" aria-hidden="true">*</span>
+              </label>
+              <input type="text" class="form-control" id="adresse" name="adresse"
+                     maxlength="255" autocomplete="street-address"
+                     placeholder="Ex. 12 Rue de la Liberté, Tunis 1000"
+                     aria-describedby="adresse-error" required>
+              <span class="help-block" id="adresse-error"></span>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="control-label" for="telephone">
+                    Téléphone <span class="app-required" aria-hidden="true">*</span>
+                  </label>
+                  <input type="tel" class="form-control" id="telephone" name="telephone"
+                         maxlength="8" inputmode="numeric" autocomplete="tel"
+                         placeholder="Ex. 71234567"
+                         aria-describedby="telephone-hint telephone-error" required>
+                  <span class="form-hint" id="telephone-hint">8 chiffres, sans espace.</span>
+                  <span class="help-block" id="telephone-error"></span>
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="control-label" for="email">
+                    Adresse e-mail <span class="app-required" aria-hidden="true">*</span>
+                  </label>
+                  <input type="email" class="form-control" id="email" name="email"
+                         maxlength="190" autocomplete="email"
+                         placeholder="Ex. contact@labo-elmanar.tn"
+                         aria-describedby="email-error" required>
+                  <span class="help-block" id="email-error"></span>
+                </div>
+              </div>
+            </div>
+            <div class="app-form-actions">
+              <button type="submit" class="btn app-btn-primary">
+                <i class="fa fa-save" aria-hidden="true"></i> Enregistrer le laboratoire
+              </button>
+              <a class="btn app-btn-outline" href="laboratoires.html">Annuler</a>
+            </div>
+          </form>
+
+          <!-- Redirection vers Validation après un formulaire valide -->
+          <script>
+            document.getElementById('labForm').addEventListener('submit', function () {
+              setTimeout(function () {
+                var ok = document.getElementById('formSuccess');
+                if (ok && ok.style.display === 'block') {
+                  var nomField = document.getElementById('nom');
+                  var nom = nomField ? nomField.value.trim() : '';
+                  // Même logique que la redirection PHP : le laboratoire
+                  // nouvellement ajouté est annoncé sur validation.html.
+                  window.location.href = 'validation.html?nouveau=1&nom='
+                    + encodeURIComponent(nom);
+                }
+              }, 0);
+            });
+          </script>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="container-fluid">
+      <div class="app-footer-inner">
+        <p><!-- DYNAMIQUE : année courante -->&copy; 2026 LabConnect — Gestion des laboratoires d'analyses médicales</p>
+        <p class="app-footer-links">
+          <a href="#" onclick="return false;">Accueil</a>
+          <span aria-hidden="true">·</span>
+          <a href="laboratoires.html">Laboratoires</a>
+          <span aria-hidden="true">·</span>
+          <a href="catalogue.html">Catalogue</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/app.js"></script>
+
+  <script>
+    /*
+     * Validation côté client – aperçu statique.
+     * La validation réelle restera assurée par LaboratoireValidator en PHP.
+     */
+    (function () {
+      'use strict';
+
+      var form = document.getElementById('labForm');
+      var errors = document.getElementById('formErrors');
+      var success = document.getElementById('formSuccess');
+
+      if (!form || !errors || !success) {
+        return;
+      }
+
+      var fields = Array.prototype.slice.call(
+        form.querySelectorAll('input:not([type="hidden"]), select')
+      );
+
+      function groupOf(input) {
+        return input.closest ? input.closest('.form-group') : null;
+      }
+
+      function errorSlot(input) {
+        return document.getElementById(input.id + '-error');
+      }
+
+      function setError(input, message) {
+        var group = groupOf(input);
+        var slot = errorSlot(input);
+
+        if (group) {
+          group.classList.toggle('has-error', message !== '');
+        }
+
+        if (slot) {
+          slot.textContent = message;
+        }
+
+        if (message !== '') {
+          input.setAttribute('aria-invalid', 'true');
+        } else {
+          input.removeAttribute('aria-invalid');
+        }
+      }
+
+      function rulesFor(input) {
+        var value = input.value.trim();
+
+        if (input.id === 'nom') {
+          if (value === '') {
+            return 'Le nom est obligatoire.';
+          }
+
+          return value.length < 2 || value.length > 150
+            ? 'Le nom doit contenir entre 2 et 150 caractères.'
+            : '';
+        }
+
+        if (input.id === 'ville') {
+          if (value === '') {
+            return 'La ville est obligatoire.';
+          }
+
+          return value.length < 2 || value.length > 100
+            ? 'La ville doit contenir entre 2 et 100 caractères.'
+            : '';
+        }
+
+        if (input.id === 'adresse') {
+          if (value === '') {
+            return "L'adresse est obligatoire.";
+          }
+
+          return value.length < 5 || value.length > 255
+            ? "L'adresse doit contenir entre 5 et 255 caractères."
+            : '';
+        }
+
+        if (input.id === 'telephone') {
+          var telephone = value.replace(/[\s.\-]+/g, '');
+
+          if (telephone === '') {
+            return 'Le téléphone est obligatoire.';
+          }
+
+          return /^[2-9][0-9]{7}$/.test(telephone)
+            ? ''
+            : 'Le téléphone doit contenir exactement 8 chiffres et commencer par 2, 3, 4, 5, 6, 7, 8 ou 9.';
+        }
+
+        if (input.id === 'email') {
+          if (value === '') {
+            return "L'adresse e-mail est obligatoire.";
+          }
+
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value)) {
+            return "L'adresse e-mail est invalide.";
+          }
+
+          return value.length > 190
+            ? "L'adresse e-mail est trop longue (190 caractères maximum)."
+            : '';
+        }
+
+        return '';
+      }
+
+      function validateField(input) {
+        var message = rulesFor(input);
+        setError(input, message);
+
+        return message === '';
+      }
+
+      function validateForm() {
+        var firstInvalid = null;
+
+        fields.forEach(function (input) {
+          if (!validateField(input) && firstInvalid === null) {
+            firstInvalid = input;
+          }
+        });
+
+        if (firstInvalid !== null) {
+          errors.style.display = 'block';
+          success.style.display = 'none';
+          firstInvalid.focus();
+          return false;
+        }
+
+        errors.style.display = 'none';
+        return true;
+      }
+
+      fields.forEach(function (input) {
+        input.addEventListener('blur', function () {
+          validateField(input);
+        });
+
+        input.addEventListener('input', function () {
+          var group = groupOf(input);
+
+          if (group && group.classList.contains('has-error')) {
+            validateField(input);
+          }
+
+          success.style.display = 'none';
+        });
+
+        input.addEventListener('change', function () {
+          validateField(input);
+          success.style.display = 'none';
+        });
+      });
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        if (!validateForm()) {
+          return;
+        }
+
+        success.style.display = 'block';
+        success.focus();
+      });
+    })();
+  </script>
+</body>
+</html>
