@@ -1,6 +1,6 @@
 # LabConnect — Gestion des laboratoires
 
-Ce document décrit uniquement le module **Gestion des laboratoires** du projet
+le module **Gestion des laboratoires** du projet
 LabConnect (PHP / MySQL / PDO / MVC). L'authentification, les rôles, le CSRF et
 la configuration viennent du module Gestion des utilisateurs.
 
