@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4A1E56">
+  <title>LabConnect – Tableau de bord</title>
+  <link rel="icon" href="/images/favicon.png">
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&amp;display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- ========== TOP BAR ========== -->
+  <header class="top">
+    <div>
+      <b>LabConnect</b><span>Administration</span>
+    </div>
+    <div class="top-right">
+      <span id="admin-identity" class="admin-identity"></span>
+      <a href="/" target="_blank" rel="noopener noreferrer" class="top-link">Voir le site patient</a>
+      <button type="button" class="btn ghost" id="out">Déconnexion</button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ========== NAVIGATION TABS ========== -->
+    <div class="tabs" role="tablist" aria-label="Sections du backoffice">
+      <button type="button" class="tab-btn active" id="tab-btn-appointments" data-tab="appointments" role="tab" aria-selected="true">
+        Rendez-vous <span class="tab-count" id="tab-count-appts">0</span>
+      </button>
+      <button type="button" class="tab-btn" id="tab-btn-users" data-tab="users" role="tab" aria-selected="false">
+        Utilisateurs (CRUD) <span class="tab-count" id="tab-count-users">0</span>
+      </button>
+    </div>
+
+    <!-- ========================================================
+         TAB 1 : RENDEZ-VOUS
+         ======================================================== -->
+    <section id="panel-appointments" role="tabpanel">
+      <!-- Statistics -->
+      <div class="stats">
+        <div class="stat"><small>Total</small><div id="s-all">0</div></div>
+        <div class="stat w"><small>En attente</small><div id="s-w">0</div></div>
+        <div class="stat o"><small>Confirmés</small><div id="s-o">0</div></div>
+        <div class="stat k"><small>Annulés</small><div id="s-k">0</div></div>
+      </div>
+
+      <!-- Filters -->
+      <div class="bar">
+        <input id="q" placeholder="Rechercher (nom, e-mail, téléphone, labo)…" aria-label="Rechercher un rendez-vous">
+        <select id="st" aria-label="Filtrer par statut">
+          <option value="">Tous les statuts</option>
+          <option>en attente</option>
+          <option>confirmé</option>
+          <option>annulé</option>
+        </select>
+      </div>
+
+      <!-- Appointments Table -->
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Patient</th>
+              <th scope="col">Rendez-vous</th>
+              <th scope="col">Examen</th>
+              <th scope="col">Statut</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+        <div class="empty" id="empty">Aucun rendez-vous.</div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         TAB 2 : UTILISATEURS (CRUD + AVEC / SANS RÉSERVATION)
+         ======================================================== -->
+    <section id="panel-users" role="tabpanel" style="display:none;">
+      <!-- User Statistics -->
+      <div class="stats">
+        <div class="stat"><small>Total comptes</small><div id="u-all">0</div></div>
+        <div class="stat o"><small>Avec réservation</small><div id="u-with">0</div></div>
+        <div class="stat w"><small>Sans réservation</small><div id="u-without">0</div></div>
+        <div class="stat"><small>Administrateurs</small><div id="u-admins">0</div></div>
+      </div>
+
+      <!-- Toolbar -->
+      <div class="bar">
+        <input id="uq" placeholder="Rechercher un utilisateur (nom, e-mail, téléphone)…" aria-label="Rechercher un utilisateur">
+        <select id="ures" aria-label="Filtrer par réservation">
+          <option value="all">Les deux tableaux</option>
+          <option value="with">Avec réservation</option>
+          <option value="without">Sans réservation</option>
+        </select>
+        <select id="urole" aria-label="Filtrer par rôle">
+          <option value="">Tous les rôles</option>
+          <option value="user">Patient</option>
+          <option value="admin">Admin</option>
+        </select>
+        <select id="ustatus" aria-label="Filtrer par statut">
+          <option value="">Tous les statuts</option>
+          <option value="active">Actif</option>
+          <option value="inactive">Désactivé</option>
+        </select>
+        <button type="button" class="btn" id="btn-add-user">+ Ajouter un utilisateur</button>
+      </div>
+
+      <!-- Table 1: Comptes AVEC réservation -->
+      <div class="table-section" id="section-with-res">
+        <div class="section-head">
+          <h2>Comptes avec réservation <span class="badge confirme" id="badge-with-count">0</span></h2>
+          <small>Utilisateurs ayant créé un compte et effectué au moins une réservation</small>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Utilisateur</th>
+                <th scope="col">Rôle &amp; Statut</th>
+                <th scope="col">Réservations</th>
+                <th scope="col">Actions (CRUD)</th>
+              </tr>
+            </thead>
+            <tbody id="rows-users-with"></tbody>
+          </table>
+          <div class="empty" id="empty-users-with">Aucun compte avec réservation.</div>
+        </div>
+      </div>
+
+      <!-- Table 2: Comptes SANS réservation -->
+      <div class="table-section" id="section-without-res">
+        <div class="section-head">
+          <h2>Comptes sans réservation <span class="badge attente" id="badge-without-count">0</span></h2>
+          <small>Utilisateurs ayant créé un compte sans aucune réservation</small>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Utilisateur</th>
+                <th scope="col">Rôle &amp; Statut</th>
+                <th scope="col">Inscription</th>
+                <th scope="col">Actions (CRUD)</th>
+              </tr>
+            </thead>
+            <tbody id="rows-users-without"></tbody>
+          </table>
+          <div class="empty" id="empty-users-without">Aucun compte sans réservation.</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== MODAL : AJOUTER / MODIFIER UTILISATEUR ========== -->
+  <div class="modal-backdrop" id="user-modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="user-modal-title">
+      <div class="modal-head">
+        <h3 id="user-modal-title">Ajouter un utilisateur</h3>
+        <button type="button" class="modal-close" id="um-close" aria-label="Fermer">&times;</button>
+      </div>
+      <form id="user-form">
+        <input type="hidden" id="um-id">
+
+        <label for="um-name">Nom complet</label>
+        <input id="um-name" required>
+
+        <label for="um-email">E-mail</label>
+        <input id="um-email" type="email" required>
+
+        <label for="um-phone">Téléphone (facultatif)</label>
+        <input id="um-phone" type="tel">
+
+        <div class="modal-grid">
+          <div>
+            <label for="um-role">Rôle</label>
+            <select id="um-role">
+              <option value="user">Patient</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+          <div>
+            <label for="um-active">Statut du compte</label>
+            <select id="um-active">
+              <option value="true">Actif</option>
+              <option value="false">Désactivé</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="um-password" id="um-password-label">Mot de passe (8 caractères min., lettres + chiffres)</label>
+        <input id="um-password" type="password" autocomplete="new-password">
+
+        <div class="err" id="um-err" role="alert"></div>
+
+        <div class="modal-actions">
+          <button type="button" class="act" id="um-cancel">Annuler</button>
+          <button type="submit" class="btn" id="um-save">Enregistrer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========== MODAL : DÉTAILS UTILISATEUR ========== -->
+  <div class="modal-backdrop" id="user-detail-modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="ud-title">
+      <div class="modal-head">
+        <h3 id="ud-title">Fiche utilisateur</h3>
+        <button type="button" class="modal-close" id="ud-close" aria-label="Fermer">&times;</button>
+      </div>
+      <div id="ud-body" class="detail-body"></div>
+      <div class="modal-actions">
+        <button type="button" class="btn" id="ud-ok">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

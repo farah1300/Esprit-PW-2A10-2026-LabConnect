@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="[Description de la page]">
+  <meta name="author" content="LabConnect">
+  <meta name="theme-color" content="#4A1E56">
+  <title>[Titre de la page] – LabConnect</title>
+
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+
+  <!-- Vendor styles -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/owl.carousel.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+  <!-- Template + theme -->
+  <link rel="stylesheet" href="css/tooplate-style.css">
+  <link rel="stylesheet" href="css/labconnect.css">
+
+  <!-- Keep the page usable if JavaScript is disabled -->
+  <noscript><style>.preloader { display: none; }</style></noscript>
+</head>
+<body id="top" data-spy="scroll" data-target="#navbar-collapse" data-offset="50">
+
+  <!-- ========== PRELOADER ========== -->
+  <section class="preloader" aria-hidden="true">
+    <div class="spinner"></div>
+  </section>
+
+  <!-- ========== TOP BAR ========== -->
+  <header>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-sm-5">
+          <p>[Slogan]</p>
+        </div>
+        <div class="col-md-8 col-sm-7 text-align-right">
+          <span class="phone-icon"><i class="fa fa-phone" aria-hidden="true"></i> [Téléphone]</span>
+          <span class="date-icon"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> [Horaires]</span>
+          <span class="email-icon"><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:contact@example.com">[E-mail]</a></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="navbar navbar-default navbar-static-top" aria-label="Navigation principale">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Ouvrir le menu">
+          <span class="icon icon-bar"></span>
+          <span class="icon icon-bar"></span>
+          <span class="icon icon-bar"></span>
+        </button>
+        <a href="index.html" class="navbar-brand">
+          <img src="images/logo.png" alt="" aria-hidden="true">
+          Lab<span>Connect</span>
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#top" class="smoothScroll">Accueil</a></li>
+          <li><a href="#about" class="smoothScroll">À propos</a></li>
+          <li><a href="#service" class="smoothScroll">Services</a></li>
+          <li><a href="#team" class="smoothScroll">Laboratoires</a></li>
+          <li><a href="#news" class="smoothScroll">Comment ça marche</a></li>
+          <li><a href="#google-map" class="smoothScroll">Contact</a></li>
+          <li id="nav-auth-guest"><a href="connexion.html"><i class="fa fa-sign-in" aria-hidden="true"></i> Connexion</a></li>
+          <li id="nav-auth-user" class="nav-user-item" style="display:none;"><a href="#appointment" class="smoothScroll nav-user-label"><i class="fa fa-user-circle-o" aria-hidden="true"></i> <span id="nav-user-name"></span></a></li>
+          <li id="nav-auth-admin" style="display:none;"><a href="/admin/"><i class="fa fa-tachometer" aria-hidden="true"></i> Backoffice</a></li>
+          <li id="nav-auth-logout" style="display:none;"><a href="#" id="front-logout-btn"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></li>
+          <li class="appointment-btn"><a href="#appointment" class="smoothScroll">Prendre rendez-vous</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== HERO / SLIDER ========== -->
+  <section id="home" class="slider" aria-label="[Titre du carrousel]">
+    <div class="container">
+      <div class="row">
+        <div class="owl-carousel owl-theme">
+
+          <!-- Slide 1 -->
+          <div class="item item-first">
+            <div class="caption">
+              <div class="col-md-offset-1 col-md-10">
+                <h3>[Sous-titre 1]</h3>
+                <h1>[Titre principal 1]</h1>
+                <a href="#team" class="section-btn btn btn-default smoothScroll">Trouver un laboratoire</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="item item-second">
+            <div class="caption">
+              <div class="col-md-offset-1 col-md-10">
+                <h3>[Sous-titre 2]</h3>
+                <h1>[Titre principal 2]</h1>
+                <a href="#appointment" class="section-btn btn btn-default btn-gray smoothScroll">Prendre rendez-vous</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="item item-third">
+            <div class="caption">
+              <div class="col-md-offset-1 col-md-10">
+                <h3>[Sous-titre 3]</h3>
+                <h1>[Titre principal 3]</h1>
+                <a href="#service" class="section-btn btn btn-default btn-blue smoothScroll">Découvrir nos services</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT ========== -->
+  <section id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-sm-6">
+          <div class="about-info">
+            <h2 class="wow fadeInUp" data-wow-delay="0.6s">[Titre de section]</h2>
+            <div class="wow fadeInUp" data-wow-delay="0.8s">
+              <p>[Texte de présentation]</p>
+              <p>[Texte de présentation]</p>
+            </div>
+            <div class="objectifs wow fadeInUp" data-wow-delay="1s">
+              <div class="objectif">
+                <i class="fa fa-database" aria-hidden="true"></i>
+                <div>
+                  <h5>[Objectif 1]</h5>
+                  <p>[Description de l'objectif]</p>
+                </div>
+              </div>
+              <div class="objectif">
+                <i class="fa fa-bolt" aria-hidden="true"></i>
+                <div>
+                  <h5>[Objectif 2]</h5>
+                  <p>[Description de l'objectif]</p>
+                </div>
+              </div>
+              <div class="objectif">
+                <i class="fa fa-comments-o" aria-hidden="true"></i>
+                <div>
+                  <h5>[Objectif 3]</h5>
+                  <p>[Description de l'objectif]</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <!-- TODO: replace with your own logo or image -->
+          <img src="images/logo.png" class="img-responsive about-logo wow fadeInUp" data-wow-delay="0.8s" alt="LabConnect">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICES ========== -->
+  <section id="service">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+            <h2>[Titre de section]</h2>
+            <p class="section-sub">[Sous-titre de section]</p>
+          </div>
+        </div>
+
+        <!-- Service 1 -->
+        <div class="col-md-4 col-sm-6">
+          <div class="service-thumb wow fadeInUp" data-wow-delay="0.2s">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <h4>[Service 1]</h4>
+            <p>[Description du service]</p>
+          </div>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="col-md-4 col-sm-6">
+          <div class="service-thumb wow fadeInUp" data-wow-delay="0.4s">
+            <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+            <h4>[Service 2]</h4>
+            <p>[Description du service]</p>
+          </div>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="col-md-4 col-sm-6">
+          <div class="service-thumb wow fadeInUp" data-wow-delay="0.6s">
+            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+            <h4>[Service 3]</h4>
+            <p>[Description du service]</p>
+          </div>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="col-md-4 col-sm-6">
+          <div class="service-thumb wow fadeInUp" data-wow-delay="0.2s">
+            <i class="fa fa-bell-o" aria-hidden="true"></i>
+            <h4>[Service 4]</h4>
+            <p>[Description du service]</p>
+          </div>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="col-md-4 col-sm-6">
+          <div class="service-thumb wow fadeInUp" data-wow-delay="0.4s">
+            <i class="fa fa-home" aria-hidden="true"></i>
+            <h4>[Service 5]</h4>
+            <p>[Description du service]</p>
+          </div>
+        </div>
+
+        <!-- Service 6 -->
+        <div class="col-md-4 col-sm-6">
+          <div class="service-thumb wow fadeInUp" data-wow-delay="0.6s">
+            <i class="fa fa-commenting-o" aria-hidden="true"></i>
+            <h4>[Service 6]</h4>
+            <p>[Description du service]</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== LABORATOIRES ========== -->
+  <section id="team">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <div class="about-info">
+            <h2 class="wow fadeInUp" data-wow-delay="0.1s">[Titre de section]</h2>
+          </div>
+        </div>
+
+        <!-- Laboratoire 1 -->
+        <div class="col-md-4 col-sm-6">
+          <div class="lab-thumb wow fadeInUp" data-wow-delay="0.2s">
+            <!-- TODO: replace image (190px height, object-fit: cover) -->
+            <img src="images/slider2.jpg" alt="[Laboratoire 1]" loading="lazy">
+            <div class="lab-info">
+              <h3>[Laboratoire 1]</h3>
+              <span class="lab-ville">[Ville 1]</span>
+              <ul>
+                <li><i class="fa fa-map-marker" aria-hidden="true"></i> [Adresse 1]</li>
+                <li><i class="fa fa-phone" aria-hidden="true"></i> [Téléphone 1]</li>
+                <li><i class="fa fa-clock-o" aria-hidden="true"></i> [Horaires 1]</li>
+              </ul>
+              <a href="#appointment" class="btn-lab smoothScroll">Réserver</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Laboratoire 2 -->
+        <div class="col-md-4 col-sm-6">
+          <div class="lab-thumb wow fadeInUp" data-wow-delay="0.4s">
+            <!-- TODO: replace image (190px height, object-fit: cover) -->
+            <img src="images/news-image1.jpg" alt="[Laboratoire 2]" loading="lazy">
+            <div class="lab-info">
+              <h3>[Laboratoire 2]</h3>
+              <span class="lab-ville">[Ville 2]</span>
+              <ul>
+                <li><i class="fa fa-map-marker" aria-hidden="true"></i> [Adresse 2]</li>
+                <li><i class="fa fa-phone" aria-hidden="true"></i> [Téléphone 2]</li>
+                <li><i class="fa fa-clock-o" aria-hidden="true"></i> [Horaires 2]</li>
+              </ul>
+              <a href="#appointment" class="btn-lab smoothScroll">Réserver</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Laboratoire 3 -->
+        <div class="col-md-4 col-sm-6">
+          <div class="lab-thumb wow fadeInUp" data-wow-delay="0.6s">
+            <!-- TODO: replace image (190px height, object-fit: cover) -->
+            <img src="images/news-image2.jpg" alt="[Laboratoire 3]" loading="lazy">
+            <div class="lab-info">
+              <h3>[Laboratoire 3]</h3>
+              <span class="lab-ville">[Ville 3]</span>
+              <ul>
+                <li><i class="fa fa-map-marker" aria-hidden="true"></i> [Adresse 3]</li>
+                <li><i class="fa fa-phone" aria-hidden="true"></i> [Téléphone 3]</li>
+                <li><i class="fa fa-clock-o" aria-hidden="true"></i> [Horaires 3]</li>
+              </ul>
+              <a href="#appointment" class="btn-lab smoothScroll">Réserver</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== COMMENT ÇA MARCHE ========== -->
+  <section id="news">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+            <h2>[Titre de section]</h2>
+          </div>
+        </div>
+
+        <!-- Étape 1 -->
+        <div class="col-md-4 col-sm-4">
+          <div class="step-thumb wow fadeInUp" data-wow-delay="0.2s">
+            <span class="step-num">1</span>
+            <h3>[Étape 1]</h3>
+            <p>[Description de l'étape]</p>
+          </div>
+        </div>
+
+        <!-- Étape 2 -->
+        <div class="col-md-4 col-sm-4">
+          <div class="step-thumb wow fadeInUp" data-wow-delay="0.4s">
+            <span class="step-num">2</span>
+            <h3>[Étape 2]</h3>
+            <p>[Description de l'étape]</p>
+          </div>
+        </div>
+
+        <!-- Étape 3 -->
+        <div class="col-md-4 col-sm-4">
+          <div class="step-thumb wow fadeInUp" data-wow-delay="0.6s">
+            <span class="step-num">3</span>
+            <h3>[Étape 3]</h3>
+            <p>[Description de l'étape]</p>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <a href="conseil.html" class="section-btn btn btn-default wow fadeInUp" data-wow-delay="0.8s">Lire nos conseils</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PRENDRE RENDEZ-VOUS ========== -->
+  <section id="appointment">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-sm-6">
+          <!-- TODO: replace image (responsive width) -->
+          <img src="images/appointment-image.jpg" class="img-responsive" alt="[Illustration du rendez-vous]" loading="lazy">
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <!-- Gate shown when not authenticated -->
+          <div id="appointment-auth-gate" class="appointment-auth-gate">
+            <div class="section-title">
+              <h2>[Titre du formulaire]</h2>
+            </div>
+            <h3><i class="fa fa-lock" aria-hidden="true"></i> Connexion requise pour prendre rendez-vous</h3>
+            <p>Créez votre compte puis connectez-vous avec votre adresse e-mail et votre mot de passe pour accéder à la prise de rendez-vous.</p>
+            <a href="connexion.html" class="section-btn btn btn-default">Se connecter / Créer un compte</a>
+          </div>
+
+          <!-- The form is submitted with JavaScript; see js/custom.js -->
+          <form id="appointment-form" method="post" action="#" style="display:none;">
+            <div class="section-title wow fadeInUp" data-wow-delay="0.4s">
+              <h2>[Titre du formulaire]</h2>
+            </div>
+            <div class="appointment-user-bar" id="appointment-user-bar" style="display:none;">
+              <span>Connecté : <strong id="appointment-user-label"></strong></span>
+              <a href="#" id="appointment-logout-link">Déconnexion</a>
+            </div>
+            <div class="wow fadeInUp" data-wow-delay="0.8s">
+              <div class="col-md-6 col-sm-6">
+                <label for="name">Nom complet</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="[Votre nom]" autocomplete="name" required>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <label for="email">E-mail</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="[Votre e-mail]" autocomplete="email" required>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date" class="form-control" required>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <label for="labo">Laboratoire</label>
+                <select class="form-control" id="labo" name="labo" required>
+                  <option value="" selected disabled>[Choisir un laboratoire]</option>
+                  <option value="laboratoire-1">[Laboratoire 1]</option>
+                  <option value="laboratoire-2">[Laboratoire 2]</option>
+                  <option value="laboratoire-3">[Laboratoire 3]</option>
+                </select>
+              </div>
+              <div class="col-md-12 col-sm-12">
+                <label for="exam">Type d’examen</label>
+                <select class="form-control" id="exam" name="exam" required>
+                  <option value="" selected disabled>[Choisir un examen]</option>
+                  <option value="examen-1">[Examen 1]</option>
+                  <option value="examen-2">[Examen 2]</option>
+                  <option value="examen-3">[Examen 3]</option>
+                  <option value="examen-4">[Examen 4]</option>
+                </select>
+                <label for="phone">Téléphone</label>
+                <input type="tel" class="form-control" id="phone" name="phone" placeholder="[Votre numéro]" autocomplete="tel" inputmode="tel">
+                <label class="home-check" for="domicile">
+                  <input type="checkbox" id="domicile" name="domicile"> [Option de prélèvement à domicile]
+                </label>
+                <label for="message">Message (facultatif)</label>
+                <textarea class="form-control" rows="4" id="message" name="message" placeholder="[Précisions pour le laboratoire]"></textarea>
+                <button type="submit" class="form-control" id="cf-submit">Confirmer le rendez-vous</button>
+                <div class="form-ok" id="form-ok" role="status" aria-live="polite"><i class="fa fa-check-circle" aria-hidden="true"></i> [Message de confirmation]</div>
+                <div class="form-err" id="form-err" role="alert" aria-live="assertive"></div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== GOOGLE MAP ========== -->
+  <section id="google-map" aria-label="[Localisation]">
+    <!-- TODO: replace the map query with your own address -->
+    <iframe class="map-embed" src="https://www.google.com/maps?q=Tunis,Tunisie&amp;output=embed" width="100%" height="350" title="[Localisation du laboratoire]" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="container">
+      <div class="row">
+
+        <!-- Contact -->
+        <div class="col-md-4 col-sm-4">
+          <div class="footer-thumb">
+            <!-- TODO: replace with your own logo -->
+            <img src="images/logo.png" class="footer-logo" alt="LabConnect">
+            <h4 class="wow fadeInUp" data-wow-delay="0.4s">Contact</h4>
+            <p>[Texte de présentation]</p>
+            <div class="contact-info">
+              <p><i class="fa fa-phone" aria-hidden="true"></i> [Téléphone]</p>
+              <p><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:contact@example.com">[E-mail]</a></p>
+            </div>
+          </div>
+        </div>
+        <!-- Horaires + réseaux sociaux -->
+        <div class="col-md-4 col-sm-4">
+          <div class="footer-thumb">
+            <div class="opening-hours">
+              <h4 class="wow fadeInUp" data-wow-delay="0.4s">Horaires</h4>
+              <p>Lundi - Vendredi <span>[Horaires]</span></p>
+              <p>Samedi <span>[Horaires]</span></p>
+              <p>Dimanche <span>Fermé</span></p>
+            </div>
+            <ul class="social-icon">
+              <li><a href="#" class="fa fa-facebook-square" aria-label="Facebook" title="Facebook"></a></li>
+              <li><a href="#" class="fa fa-instagram" aria-label="Instagram" title="Instagram"></a></li>
+              <li><a href="#" class="fa fa-linkedin-square" aria-label="LinkedIn" title="LinkedIn"></a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Copyright + liens -->
+        <div class="col-md-12 col-sm-12 border-top">
+          <div class="row">
+            <div class="col-md-4 col-sm-6">
+              <div class="copyright-text">
+                <p>Copyright &copy; 2026 LabConnect | [Mention légale]</p>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div class="footer-link">
+                <a href="#team" class="smoothScroll">Laboratoires</a>
+                <a href="#appointment" class="smoothScroll">Rendez-vous</a>
+                <a href="#service" class="smoothScroll">Résultats</a>
+                <a href="conseil.html">Conseils</a>
+              </div>
+            </div>
+            <div class="col-md-2 col-sm-12 text-align-center">
+              <div class="angle-up-btn">
+                <a href="#top" class="smoothScroll wow fadeInUp" data-wow-delay="1.2s" aria-label="Retour en haut"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.sticky.js"></script>
+  <script src="js/wow.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/custom.js"></script>
+</body>
+</html>

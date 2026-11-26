@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="[Description de la page]">
+  <meta name="author" content="LabConnect">
+  <meta name="theme-color" content="#4A1E56">
+  <title>[Titre de la page] – LabConnect</title>
+
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+
+  <!-- Vendor styles -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/owl.carousel.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+  <!-- Template + theme -->
+  <link rel="stylesheet" href="css/tooplate-style.css">
+  <link rel="stylesheet" href="css/labconnect.css">
+
+  <!-- Keep the page usable if JavaScript is disabled -->
+  <noscript><style>.preloader { display: none; }</style></noscript>
+</head>
+<body id="top">
+
+  <!-- ========== PRELOADER ========== -->
+  <section class="preloader" aria-hidden="true">
+    <div class="spinner"></div>
+  </section>
+
+  <!-- ========== TOP BAR ========== -->
+  <header>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-sm-5">
+          <p>[Slogan]</p>
+        </div>
+        <div class="col-md-8 col-sm-7 text-align-right">
+          <span class="phone-icon"><i class="fa fa-phone" aria-hidden="true"></i> [Téléphone]</span>
+          <span class="date-icon"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> [Horaires]</span>
+          <span class="email-icon"><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:contact@example.com">[E-mail]</a></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="navbar navbar-default navbar-static-top" aria-label="Navigation principale">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Ouvrir le menu">
+          <span class="icon icon-bar"></span>
+          <span class="icon icon-bar"></span>
+          <span class="icon icon-bar"></span>
+        </button>
+        <a href="index.html" class="navbar-brand">
+          <img src="images/logo.png" alt="" aria-hidden="true">
+          Lab<span>Connect</span>
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="index.html#top">Accueil</a></li>
+          <li><a href="index.html#about">À propos</a></li>
+          <li><a href="index.html#service">Services</a></li>
+          <li><a href="index.html#team">Laboratoires</a></li>
+          <li><a href="index.html#news">Comment ça marche</a></li>
+          <li><a href="index.html#google-map">Contact</a></li>
+          <li id="nav-auth-guest"><a href="connexion.html"><i class="fa fa-sign-in" aria-hidden="true"></i> Connexion</a></li>
+          <li id="nav-auth-user" class="nav-user-item" style="display:none;"><a href="index.html#appointment" class="nav-user-label"><i class="fa fa-user-circle-o" aria-hidden="true"></i> <span id="nav-user-name"></span></a></li>
+          <li id="nav-auth-admin" style="display:none;"><a href="/admin/"><i class="fa fa-tachometer" aria-hidden="true"></i> Backoffice</a></li>
+          <li id="nav-auth-logout" style="display:none;"><a href="#" id="front-logout-btn"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></li>
+          <li class="appointment-btn"><a href="index.html#appointment">Prendre rendez-vous</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== ARTICLE / CONSEIL ========== -->
+  <section id="news-detail">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-7">
+          <div class="news-detail-thumb">
+            <div class="news-image">
+              <!-- TODO: replace image (responsive width) -->
+              <img src="images/news-image3.jpg" class="img-responsive" alt="[Description de l'image]">
+            </div>
+
+            <h1 class="article-title">[Titre de l'article]</h1>
+            <p>[Corps de l'article]</p>
+            <blockquote>[Citation]</blockquote>
+            <ul>
+              <li>[Point clé 1]</li>
+              <li>[Point clé 2]</li>
+              <li>[Point clé 3]</li>
+            </ul>
+            <p>[Corps de l'article]</p>
+
+            <!-- Partage social -->
+            <div class="news-social-share">
+              <h4>Partager cet article</h4>
+              <a href="#" class="btn btn-primary" aria-label="Partager sur Facebook"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</a>
+              <a href="#" class="btn btn-success" aria-label="Partager sur LinkedIn"><i class="fa fa-linkedin" aria-hidden="true"></i> LinkedIn</a>
+              <a href="#" class="btn btn-danger" aria-label="Partager par e-mail"><i class="fa fa-envelope-o" aria-hidden="true"></i> E-mail</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-md-4 col-sm-5">
+          <div class="news-sidebar">
+            <div class="news-author">
+              <h4>À propos</h4>
+              <p>[Texte de présentation]</p>
+            </div>
+
+            <div class="news-categories">
+              <h4>Catégories</h4>
+              <ul>
+                <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> [Catégorie 1]</a></li>
+                <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> [Catégorie 2]</a></li>
+                <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> [Catégorie 3]</a></li>
+              </ul>
+            </div>
+
+            <div class="news-tags">
+              <h4>Mots-clés</h4>
+              <ul>
+                <li><a href="#">[Mot-clé 1]</a></li>
+                <li><a href="#">[Mot-clé 2]</a></li>
+                <li><a href="#">[Mot-clé 3]</a></li>
+                <li><a href="#">[Mot-clé 4]</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="container">
+      <div class="row">
+
+        <!-- Contact -->
+        <div class="col-md-4 col-sm-4">
+          <div class="footer-thumb">
+            <!-- TODO: replace with your own logo -->
+            <img src="images/logo.png" class="footer-logo" alt="LabConnect">
+            <h4 class="wow fadeInUp" data-wow-delay="0.4s">Contact</h4>
+            <p>[Texte de présentation]</p>
+            <div class="contact-info">
+              <p><i class="fa fa-phone" aria-hidden="true"></i> [Téléphone]</p>
+              <p><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:contact@example.com">[E-mail]</a></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Horaires + réseaux sociaux -->
+        <div class="col-md-4 col-sm-4">
+          <div class="footer-thumb">
+            <div class="opening-hours">
+              <h4 class="wow fadeInUp" data-wow-delay="0.4s">Horaires</h4>
+              <p>Lundi - Vendredi <span>[Horaires]</span></p>
+              <p>Samedi <span>[Horaires]</span></p>
+              <p>Dimanche <span>Fermé</span></p>
+            </div>
+            <ul class="social-icon">
+              <li><a href="#" class="fa fa-facebook-square" aria-label="Facebook" title="Facebook"></a></li>
+              <li><a href="#" class="fa fa-instagram" aria-label="Instagram" title="Instagram"></a></li>
+              <li><a href="#" class="fa fa-linkedin-square" aria-label="LinkedIn" title="LinkedIn"></a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Copyright + liens -->
+        <div class="col-md-12 col-sm-12 border-top">
+          <div class="row">
+            <div class="col-md-4 col-sm-6">
+              <div class="copyright-text">
+                <p>Copyright &copy; 2026 LabConnect | [Mention légale]</p>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div class="footer-link">
+                <a href="index.html#team">Laboratoires</a>
+                <a href="index.html#appointment">Rendez-vous</a>
+                <a href="index.html#service">Résultats</a>
+                <a href="conseil.html">Conseils</a>
+              </div>
+            </div>
+            <div class="col-md-2 col-sm-12 text-align-center">
+              <div class="angle-up-btn">
+                <a href="#top" class="smoothScroll wow fadeInUp" data-wow-delay="1.2s" aria-label="Retour en haut"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.sticky.js"></script>
+  <script src="js/wow.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/custom.js"></script>
+</body>
+</html>

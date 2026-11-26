@@ -1,0 +1,25 @@
+[
+  {
+    "id": 1,
+    "name": "Administrateur LabConnect",
+    "username": "admin",
+    "email": "admin@labconnect.tn",
+    "phone": "",
+    "role": "admin",
+    "active": true,
+    "passwordHash": "6628c74b35b58a85e00d5079ccd416a8:aace4aba37d37d7d9cd9b1f4cc335d73f64b17adf0a1008a4bd2b7565943bf4e9f14f98b7a18ba7a952ea46c55acc8faa9e3396f8676eb9bf3c3aa69175ce27b",
+    "createdAt": "2026-11-26T10:42:06.693Z",
+    "lastLogin": "2026-11-26T11:06:10.521Z"
+  },
+  {
+    "id": 2,
+    "name": "farah ghanney",
+    "email": "farahghanney3@gmail.com",
+    "phone": "99683839",
+    "role": "user",
+    "active": true,
+    "passwordHash": "f19668772f5b5d7d0663172ecc6f14fd:c4d3f330dce5afe66e49234dbfc15b8004c24434f63be608a4d81bc6b21326548fd54bda740e71d0ee405d084bbf580597b9bcad031adc3abc7e5858abe7aea1",
+    "createdAt": "2026-11-26T11:00:41.985Z",
+    "lastLogin": "2026-11-26T11:03:11.781Z"
+  }
+]

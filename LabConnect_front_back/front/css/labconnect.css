@@ -1,0 +1,720 @@
+/* ============================================================
+   LabConnect – Thème et surcharges
+   ------------------------------------------------------------
+   Toutes les couleurs et polices sont centralisées ici.
+   Modifiez les variables ci-dessous pour re-thémer le site.
+   ============================================================ */
+
+:root {
+  /* Couleurs de marque */
+  --lc-violet: #4A1E56;
+  --lc-violet-dark: #361540;
+  --lc-violet-soft: #6b3a7a;
+  --lc-violet-rgb: 74, 30, 86;
+  --lc-bleu: #A6CFF7;
+  --lc-bleu-soft: #EAF3FD;
+  --lc-bleu-light: #d6e9fb;
+  --lc-bleu-accent: #6aa7e0;
+
+  /* Neutres */
+  --lc-white: #ffffff;
+  --lc-surface: #faf7fb;
+  --lc-border: #ece4f0;
+  --lc-border-soft: #e4d9ea;
+  --lc-text: #3b2a42;
+  --lc-muted: #666666;
+  --lc-muted-light: #757575;
+  --lc-on-violet: #e2d6e8;
+  --lc-danger: #8a5a96;
+  --lc-error: #c0392b;
+  --lc-error-soft: #fbe3e0;
+
+  /* Typographie */
+  --lc-font-body: 'Inter', sans-serif;
+  --lc-font-heading: 'Poppins', sans-serif;
+}
+
+/* === Base & typographie === */
+body,
+p,
+label,
+input,
+select,
+textarea,
+.form-control {
+  font-family: var(--lc-font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.navbar-nav li a,
+.section-btn,
+button,
+.btn {
+  font-family: var(--lc-font-heading);
+}
+
+h2 {
+  color: var(--lc-violet);
+}
+
+a:hover,
+a:active,
+a:focus {
+  color: var(--lc-violet);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--lc-violet);
+}
+
+/* === Boutons === */
+.section-btn {
+  background: var(--lc-violet);
+  color: var(--lc-white);
+}
+
+.section-btn:hover {
+  background: var(--lc-violet-dark);
+  color: var(--lc-white);
+}
+
+.btn-gray {
+  background: var(--lc-white);
+  color: var(--lc-violet);
+}
+
+.btn-gray:hover {
+  background: var(--lc-bleu);
+  color: var(--lc-violet);
+}
+
+.btn-blue {
+  background: var(--lc-bleu);
+  color: var(--lc-violet);
+}
+
+.btn-blue:hover {
+  background: var(--lc-white);
+  color: var(--lc-violet);
+}
+
+/* === Barre supérieure === */
+header span i {
+  color: var(--lc-violet);
+}
+
+header p {
+  color: var(--lc-violet);
+  font-weight: 500;
+}
+
+/* === Navigation === */
+.navbar-default .navbar-brand {
+  display: flex;
+  align-items: center;
+  height: auto;
+  padding: 2px 15px;
+  font-family: var(--lc-font-heading);
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--lc-violet);
+  letter-spacing: -.5px;
+}
+
+.navbar-default .navbar-brand img {
+  height: 46px;
+  width: auto;
+  margin-right: 10px;
+}
+
+.navbar-default .navbar-brand span {
+  color: var(--lc-bleu-accent);
+}
+
+.navbar-default .navbar-nav li a {
+  color: var(--lc-text);
+  padding-left: 13px;
+  padding-right: 13px;
+}
+
+.navbar-default .navbar-nav li.appointment-btn {
+  margin-left: 10px;
+}
+
+.navbar-default .navbar-nav li.nav-user-item a.nav-user-label {
+  color: var(--lc-violet);
+  font-weight: 600;
+}
+
+.navbar-default .navbar-nav > li a:hover {
+  color: var(--lc-violet) !important;
+}
+
+.navbar-default .navbar-nav li.appointment-btn a {
+  background: var(--lc-violet);
+}
+
+.navbar-default .navbar-nav li.appointment-btn a:hover {
+  background: var(--lc-bleu);
+  color: var(--lc-violet) !important;
+}
+
+/* === Hero / slider === */
+.slider .caption {
+  background: linear-gradient(120deg, rgba(var(--lc-violet-rgb), .78), rgba(var(--lc-violet-rgb), .25));
+}
+
+#home h3 {
+  color: var(--lc-bleu);
+}
+
+/* === À propos === */
+#about {
+  background: linear-gradient(135deg, var(--lc-bleu-soft) 0%, var(--lc-white) 60%);
+  padding-top: 110px;
+  padding-bottom: 110px;
+}
+
+#about .about-logo {
+  max-width: 260px;
+  margin: 0 auto;
+  display: block;
+}
+
+.objectifs {
+  margin-top: 25px;
+}
+
+.objectif {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+.objectif .fa {
+  flex: 0 0 46px;
+  height: 46px;
+  line-height: 46px;
+  text-align: center;
+  border-radius: 50%;
+  background: var(--lc-violet);
+  color: var(--lc-white);
+  font-size: 20px;
+  margin-right: 15px;
+}
+
+.objectif h5 {
+  margin: 0 0 2px;
+  color: var(--lc-violet);
+  font-size: 16px;
+}
+
+.objectif p {
+  margin: 0;
+}
+
+/* === Services / modules === */
+#service {
+  background: var(--lc-violet);
+  text-align: center;
+  padding: 100px 0 70px;
+}
+
+#service h2 {
+  color: var(--lc-white);
+}
+
+#service .section-sub {
+  color: var(--lc-bleu);
+  margin-bottom: 45px;
+}
+
+#service .service-thumb {
+  padding: 0 18px;
+  margin-bottom: 40px;
+}
+
+#service .fa {
+  background: var(--lc-bleu);
+  color: var(--lc-violet);
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  font-size: 40px;
+  transition: transform .3s;
+}
+
+#service .service-thumb:hover .fa {
+  transform: translateY(-6px) rotate(-4deg);
+}
+
+#service h4 {
+  color: var(--lc-white);
+  font-size: 1.4em;
+  margin-top: 10px;
+}
+
+#service p {
+  color: var(--lc-on-violet);
+}
+
+/* === Laboratoires === */
+#team {
+  background: var(--lc-white);
+}
+
+.lab-thumb {
+  background: var(--lc-white);
+  border: 1px solid var(--lc-border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 30px;
+  transition: box-shadow .3s, transform .3s;
+}
+
+.lab-thumb:hover {
+  box-shadow: 0 10px 30px rgba(var(--lc-violet-rgb), .15);
+  transform: translateY(-4px);
+}
+
+.lab-thumb img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+}
+
+.lab-info {
+  padding: 22px 26px 26px;
+}
+
+.lab-info h3 {
+  color: var(--lc-violet);
+  font-size: 1.4em;
+  margin-bottom: 4px;
+}
+
+.lab-info .lab-ville {
+  color: var(--lc-bleu-accent);
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.lab-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0 18px;
+}
+
+.lab-info ul li {
+  font-size: 13px;
+  color: var(--lc-muted);
+  padding: 3px 0;
+}
+
+.lab-info ul li .fa {
+  color: var(--lc-violet);
+  width: 20px;
+}
+
+.lab-info .btn-lab {
+  display: inline-block;
+  background: var(--lc-bleu);
+  color: var(--lc-violet);
+  font-weight: 600;
+  font-size: 13px;
+  padding: 10px 18px;
+  border-radius: 3px;
+}
+
+.lab-info .btn-lab:hover {
+  background: var(--lc-violet);
+  color: var(--lc-white);
+}
+
+/* === Comment ça marche === */
+#news {
+  background: var(--lc-bleu-soft);
+}
+
+.step-thumb {
+  background: var(--lc-white);
+  border-radius: 10px;
+  padding: 40px 28px;
+  box-shadow: 0 4px 18px rgba(var(--lc-violet-rgb), .07);
+  margin-bottom: 25px;
+}
+
+.step-thumb .step-num {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  line-height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--lc-bleu), var(--lc-bleu-light));
+  color: var(--lc-violet);
+  font-family: var(--lc-font-heading);
+  font-weight: 700;
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.step-thumb h3 {
+  color: var(--lc-violet);
+  font-size: 1.3em;
+  margin-bottom: 10px;
+}
+
+/* === Rendez-vous === */
+#appointment {
+  background: var(--lc-white);
+}
+
+#appointment label {
+  color: var(--lc-violet);
+}
+
+#appointment .form-control {
+  background: var(--lc-bleu-soft);
+}
+
+#appointment .form-control:focus {
+  box-shadow: 0 0 0 2px var(--lc-bleu);
+}
+
+#appointment button#cf-submit {
+  background: var(--lc-violet);
+}
+
+#appointment button#cf-submit:hover {
+  background: var(--lc-bleu);
+  color: var(--lc-violet);
+}
+
+#appointment .home-check {
+  margin: -2px 0 15px;
+  font-weight: 500;
+}
+
+#appointment .home-check input {
+  height: auto;
+  margin-right: 6px;
+}
+
+.form-ok {
+  display: none;
+  background: var(--lc-bleu-soft);
+  border-left: 4px solid var(--lc-violet);
+  color: var(--lc-violet);
+  padding: 12px 16px;
+  margin-top: 15px;
+  border-radius: 3px;
+}
+
+.form-err {
+  display: none;
+  background: var(--lc-error-soft);
+  border-left: 4px solid var(--lc-error);
+  color: var(--lc-error);
+  padding: 12px 16px;
+  margin-top: 15px;
+  border-radius: 3px;
+}
+
+/* === Auth gate (rendez-vous) & page connexion === */
+.appointment-auth-gate {
+  background: var(--lc-surface);
+  border: 1px solid var(--lc-border);
+  border-radius: 10px;
+  padding: 32px 28px;
+  margin-top: 15px;
+}
+
+.appointment-auth-gate h3 {
+  color: var(--lc-violet);
+  margin-top: 0;
+  font-size: 20px;
+}
+
+.appointment-auth-gate p {
+  color: var(--lc-text);
+  margin-bottom: 20px;
+}
+
+.appointment-user-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  background: var(--lc-bleu-soft);
+  border-left: 4px solid var(--lc-violet);
+  padding: 10px 14px;
+  border-radius: 4px;
+  margin: 0 15px 18px;
+  font-size: 13px;
+  color: var(--lc-violet);
+}
+
+#auth-section {
+  background: var(--lc-surface);
+  padding: 60px 0 80px;
+  min-height: 70vh;
+}
+
+.auth-card {
+  background: var(--lc-white);
+  border: 1px solid var(--lc-border);
+  border-radius: 10px;
+  padding: 30px 28px;
+  margin-bottom: 25px;
+  box-shadow: 0 6px 24px rgba(var(--lc-violet-rgb), .06);
+}
+
+.auth-card h2 {
+  font-size: 24px;
+  margin-top: 0;
+  margin-bottom: 22px;
+  color: var(--lc-violet);
+}
+
+.auth-card h2 .fa {
+  color: var(--lc-bleu-accent);
+  margin-right: 8px;
+}
+
+.auth-card label {
+  color: var(--lc-text);
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.auth-card .form-control {
+  height: 44px;
+  border: 1px solid var(--lc-border-soft);
+  box-shadow: none;
+}
+
+.auth-card .form-control:focus {
+  border-color: var(--lc-violet);
+  box-shadow: 0 0 0 2px var(--lc-bleu-light);
+}
+
+.auth-hint {
+  font-size: 12px;
+  color: var(--lc-muted);
+  margin: 8px 0 16px;
+}
+
+.auth-btn {
+  background: var(--lc-violet);
+  color: var(--lc-white);
+  font-weight: 600;
+  padding: 11px 22px;
+  border-radius: 4px;
+  border: 0;
+}
+
+.auth-btn:hover,
+.auth-btn:focus {
+  background: var(--lc-violet-dark);
+  color: var(--lc-white);
+}
+
+.auth-session-banner {
+  background: var(--lc-white);
+  border: 1px solid var(--lc-border);
+  border-left: 4px solid var(--lc-violet);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.auth-session-banner strong {
+  color: var(--lc-violet);
+  display: block;
+}
+
+.auth-session-banner span {
+  font-size: 13px;
+  color: var(--lc-muted);
+}
+
+.auth-session-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.auth-btn-sm {
+  background: var(--lc-violet);
+  color: var(--lc-white);
+  padding: 8px 14px;
+  font-size: 13px;
+  border-radius: 4px;
+  border: 1px solid var(--lc-violet);
+}
+
+.auth-btn-sm:hover {
+  background: var(--lc-violet-dark);
+  color: var(--lc-white);
+}
+
+.auth-btn-outline {
+  background: transparent;
+  color: var(--lc-violet);
+}
+
+.auth-btn-outline:hover {
+  background: var(--lc-bleu-soft);
+  color: var(--lc-violet);
+}
+
+/* === Carte === */
+.map-embed {
+  display: block;
+  width: 100%;
+  height: 350px;
+  border: 0;
+}
+
+/* === Pied de page === */
+footer {
+  background: var(--lc-surface);
+}
+
+footer h4 {
+  color: var(--lc-violet);
+}
+
+footer a:hover {
+  color: var(--lc-violet);
+}
+
+.contact-info .fa {
+  background: var(--lc-violet);
+}
+
+.footer-logo {
+  height: 50px;
+  margin-bottom: 12px;
+}
+
+.odd-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.odd-list li {
+  font-size: 13px;
+  color: var(--lc-muted-light);
+  padding: 5px 0;
+  border-bottom: 1px dashed var(--lc-border-soft);
+}
+
+.odd-list li b {
+  color: var(--lc-violet);
+}
+
+.social-icon li a:hover {
+  background: var(--lc-violet);
+}
+
+.angle-up-btn a:hover {
+  background: var(--lc-violet);
+}
+
+/* === Page conseil / article === */
+#news-detail {
+  background: var(--lc-bleu-soft);
+}
+
+#news-detail blockquote {
+  border-left: 5px solid var(--lc-violet);
+  font-size: 15px;
+  color: var(--lc-violet);
+}
+
+.news-author {
+  margin-bottom: 24px;
+}
+
+.news-categories ul,
+.news-tags ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.news-tags li a {
+  background: var(--lc-violet);
+}
+
+.news-tags li a:hover {
+  background: var(--lc-bleu);
+  color: var(--lc-violet);
+}
+
+.news-social-share .btn-primary {
+  background: var(--lc-violet);
+}
+
+.news-social-share .btn-success {
+  background: var(--lc-bleu-accent);
+}
+
+.news-social-share .btn-danger {
+  background: var(--lc-danger);
+}
+
+/* === Responsive === */
+@media only screen and (max-width: 991px) {
+  #about {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .navbar-default .navbar-brand img {
+    height: 40px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #about {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  #service {
+    padding: 70px 0 40px;
+  }
+
+  #service .fa {
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 32px;
+  }
+
+  .lab-thumb img {
+    height: 170px;
+  }
+
+  .step-thumb {
+    padding: 30px 22px;
+  }
+
+  .map-embed {
+    height: 280px;
+  }
+}

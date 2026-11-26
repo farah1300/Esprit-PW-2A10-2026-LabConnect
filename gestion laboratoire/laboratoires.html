@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="LabConnect – gestion des laboratoires d'analyses médicales.">
+  <meta name="theme-color" content="#4A1E56">
+  <title>Laboratoires – LabConnect</title>
+
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+
+  <!-- Polices du template -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+
+  <!-- Styles du template + surcharges LabConnect -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/tooplate-style.css">
+  <link rel="stylesheet" href="assets/css/labconnect.css">
+
+  <noscript>
+    <style>
+      @media (max-width: 991px) {
+        .app-sidebar { display: block !important; }
+        .app-menu-toggle { display: none !important; }
+      }
+    </style>
+  </noscript>
+</head>
+<body class="app-body">
+
+  <!-- Barre supérieure -->
+  <header class="app-topbar">
+    <div class="container-fluid">
+      <div class="app-topbar-inner">
+        <p><i class="fa fa-heartbeat" aria-hidden="true"></i> LabConnect — Votre santé, simplifiée</p>
+        <p class="app-topbar-meta">
+          <i class="fa fa-info-circle" aria-hidden="true"></i> Aperçu statique
+          <span class="app-role-badge">Administration</span>
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="app-navbar" aria-label="Navigation principale">
+    <div class="container-fluid app-navbar-inner">
+      <button type="button" class="app-menu-toggle" id="sidebarToggle"
+              aria-controls="appSidebar" aria-expanded="false" aria-label="Ouvrir le menu">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+      </button>
+
+      <a class="app-brand" href="laboratoires.html">
+        <img src="assets/img/logo.png" alt="" aria-hidden="true">
+        Lab<span>Connect</span>
+      </a>
+
+      <div class="app-nav-user">
+        <span class="app-nav-name">
+          <i class="fa fa-user-o" aria-hidden="true"></i> 
+        </span>
+        <!-- Aperçu : ce lien deviendra logout.php dans la version PHP. -->
+        <a class="btn btn-sm app-logout" href="#" onclick="return false;" title="Aperçu statique">
+          <i class="fa fa-sign-out" aria-hidden="true"></i> <span class="app-logout-text">Déconnexion</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Grille : sidebar + contenu -->
+  <div class="container-fluid app-shell">
+    <div class="row">
+
+      <!-- Sidebar (même structure que includes/sidebar.php) -->
+      <aside class="col-md-3 app-sidebar" id="appSidebar" aria-label="Menu latéral">
+        <div class="app-sidebar-inner">
+          <p class="app-sidebar-title">Navigation</p>
+
+          <ul class="app-menu">
+            <li><a href="#" onclick="return false;"><i class="fa fa-tachometer" aria-hidden="true"></i> Tableau de bord</a></li>
+
+            <!-- MODULE 1 : UTILISATEURS (Admin) -->
+            <li class="app-menu-heading"> USER </li>
+            <li><a href="#" onclick="return false;"><i class="fa fa-users" aria-hidden="true"></i> Utilisateurs</a></li>
+            <li><a href="#" onclick="return false;"><i class="fa fa-shield" aria-hidden="true"></i> Rôles</a></li>
+
+            <!-- MODULE 2 : LABORATOIRES (Admin) -->
+            <li class="app-menu-heading">Module 2 — Laboratoires</li>
+            <li class="active"><a href="laboratoires.html"><i class="fa fa-flask" aria-hidden="true"></i> Laboratoires</a></li>
+            <li><a href="#" onclick="return false;"><i class="fa fa-list-alt" aria-hidden="true"></i> Catalogue des analyses</a></li>
+            <li><a href="#" onclick="return false;"><i class="fa fa-check-square-o" aria-hidden="true"></i> Validation</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Contenu de la page -->
+      <main class="col-md-9 app-content" id="contenu">
+
+        <div class="app-page-head">
+          <div>
+            <h1 class="app-page-title">Laboratoires <span class="app-preview-badge">Aperçu</span></h1>
+            <p class="app-page-sub">Gérez les laboratoires partenaires, leurs coordonnées et leurs analyses.</p>
+          </div>
+          <div class="app-head-actions">
+            <!-- Aperçu : ce bouton deviendra ajouter-laboratoire.php. -->
+            <a href="#" class="btn app-btn-primary" onclick="return false;" title="Aperçu statique">
+              <i class="fa fa-plus" aria-hidden="true"></i> Ajouter un laboratoire
+            </a>
+          </div>
+        </div>
+
+        <!-- Statistiques (valeurs fictives) -->
+        <div class="app-stats">
+          <div class="app-stat">
+            <small>Laboratoires</small>
+            <strong>5</strong>
+          </div>
+          <div class="app-stat blue">
+            <small>Villes couvertes</small>
+            <strong>5</strong>
+          </div>
+          <div class="app-stat green">
+            <small>Analyses au catalogue</small>
+            <strong>16</strong>
+          </div>
+          <div class="app-stat gold">
+            <small>Laboratoires actifs</small>
+            <strong>5</strong>
+          </div>
+        </div>
+
+        <!-- Liste des laboratoires -->
+        <div class="app-card app-card-table">
+          <div class="app-toolbar">
+            <div class="app-search">
+              <label for="labSearch" class="sr-only">Rechercher un laboratoire</label>
+              <i class="fa fa-search" aria-hidden="true"></i>
+              <input type="search" class="form-control" id="labSearch"
+                     placeholder="Rechercher (nom, ville, adresse, e-mail)…" autocomplete="off">
+            </div>
+
+            <label for="labCity" class="sr-only">Filtrer par ville</label>
+            <select class="form-control app-filter" id="labCity">
+              <option value="">Toutes les villes</option>
+              <option value="Tunis">Tunis</option>
+              <option value="Sfax">Sfax</option>
+              <option value="Sousse">Sousse</option>
+              <option value="Nabeul">Nabeul</option>
+              <option value="Ariana">Ariana</option>
+            </select>
+
+            <button type="button" class="btn app-btn-outline" id="resetFilters" title="Réinitialiser les filtres">
+              <i class="fa fa-refresh" aria-hidden="true"></i> Réinitialiser
+            </button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table app-table" id="labsTable">
+              <thead>
+                <tr>
+                  <th scope="col">Laboratoire</th>
+                  <th scope="col">Ville</th>
+                  <th scope="col" class="hide-sm">Adresse</th>
+                  <th scope="col">Téléphone</th>
+                  <th scope="col" class="hide-sm">Analyses</th>
+                  <th scope="col" class="text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-city="Tunis">
+                  <td>
+                    <span class="app-lab-name">Laboratoire El Manar</span>
+                    <span class="app-lab-email">contact@labo-elmanar.tn</span>
+                  </td>
+                  <td>Tunis</td>
+                  <td class="hide-sm">12 Rue de la Liberté, Tunis 1000</td>
+                  <td class="app-lab-phone">71 234 567</td>
+                  <td class="hide-sm"><span class="app-badge-count">5</span></td>
+                  <td class="text-right">
+                    <div class="app-actions">
+                      <button type="button" class="app-action" title="Voir la fiche" aria-label="Voir la fiche du Laboratoire El Manar"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                      <button type="button" class="app-action" title="Modifier" aria-label="Modifier le Laboratoire El Manar"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                      <button type="button" class="app-action danger" title="Supprimer" aria-label="Supprimer le Laboratoire El Manar"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr data-city="Sfax">
+                  <td>
+                    <span class="app-lab-name">Laboratoire Ibn Sina</span>
+                    <span class="app-lab-email">contact@labo-ibnsina.tn</span>
+                  </td>
+                  <td>Sfax</td>
+                  <td class="hide-sm">8 Avenue Habib Bourguiba, Sfax 3000</td>
+                  <td class="app-lab-phone">74 567 890</td>
+                  <td class="hide-sm"><span class="app-badge-count">4</span></td>
+                  <td class="text-right">
+                    <div class="app-actions">
+                      <button type="button" class="app-action" title="Voir la fiche" aria-label="Voir la fiche du Laboratoire Ibn Sina"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                      <button type="button" class="app-action" title="Modifier" aria-label="Modifier le Laboratoire Ibn Sina"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                      <button type="button" class="app-action danger" title="Supprimer" aria-label="Supprimer le Laboratoire Ibn Sina"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr data-city="Sousse">
+                  <td>
+                    <span class="app-lab-name">Laboratoire Pasteur</span>
+                    <span class="app-lab-email">contact@labo-pasteur.tn</span>
+                  </td>
+                  <td>Sousse</td>
+                  <td class="hide-sm">3 Rue du Docteur Moreau, Sousse 4000</td>
+                  <td class="app-lab-phone">73 456 789</td>
+                  <td class="hide-sm"><span class="app-badge-count">3</span></td>
+                  <td class="text-right">
+                    <div class="app-actions">
+                      <button type="button" class="app-action" title="Voir la fiche" aria-label="Voir la fiche du Laboratoire Pasteur"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                      <button type="button" class="app-action" title="Modifier" aria-label="Modifier le Laboratoire Pasteur"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                      <button type="button" class="app-action danger" title="Supprimer" aria-label="Supprimer le Laboratoire Pasteur"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr data-city="Nabeul">
+                  <td>
+                    <span class="app-lab-name">Laboratoire Nour</span>
+                    <span class="app-lab-email">contact@labo-nour.tn</span>
+                  </td>
+                  <td>Nabeul</td>
+                  <td class="hide-sm">15 Avenue Taïeb Mhiri, Nabeul 8000</td>
+                  <td class="app-lab-phone">72 345 678</td>
+                  <td class="hide-sm"><span class="app-badge-count">2</span></td>
+                  <td class="text-right">
+                    <div class="app-actions">
+                      <button type="button" class="app-action" title="Voir la fiche" aria-label="Voir la fiche du Laboratoire Nour"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                      <button type="button" class="app-action" title="Modifier" aria-label="Modifier le Laboratoire Nour"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                      <button type="button" class="app-action danger" title="Supprimer" aria-label="Supprimer le Laboratoire Nour"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr data-city="Ariana">
+                  <td>
+                    <span class="app-lab-name">Laboratoire Ariana</span>
+                    <span class="app-lab-email">contact@labo-ariana.tn</span>
+                  </td>
+                  <td>Ariana</td>
+                  <td class="hide-sm">22 Rue de l'Indépendance, Ariana 2080</td>
+                  <td class="app-lab-phone">71 987 654</td>
+                  <td class="hide-sm"><span class="app-badge-count">2</span></td>
+                  <td class="text-right">
+                    <div class="app-actions">
+                      <button type="button" class="app-action" title="Voir la fiche" aria-label="Voir la fiche du Laboratoire Ariana"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                      <button type="button" class="app-action" title="Modifier" aria-label="Modifier le Laboratoire Ariana"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                      <button type="button" class="app-action danger" title="Supprimer" aria-label="Supprimer le Laboratoire Ariana"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Ligne affichée par le filtre quand aucun résultat ne correspond -->
+                <tr id="noResults" style="display: none;">
+                  <td colspan="6">
+                    <div class="app-empty">
+                      <i class="fa fa-search" aria-hidden="true"></i>
+                      Aucun laboratoire ne correspond à votre recherche.
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="app-note">
+            <i class="fa fa-info-circle" aria-hidden="true"></i>
+            Aperçu statique : les boutons Voir / Modifier / Supprimer seront reliés au contrôleur PHP à l'étape 4.
+          </p>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="container-fluid">
+      <div class="app-footer-inner">
+        <p>&copy; 2026 LabConnect — Gestion des laboratoires d'analyses médicales</p>
+        <p class="app-footer-links">
+          <a href="#" onclick="return false;">Accueil</a>
+          <span aria-hidden="true">·</span>
+          <a href="laboratoires.html">Laboratoires</a>
+          <span aria-hidden="true">·</span>
+          <a href="#" onclick="return false;">Catalogue</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/app.js"></script>
+
+  <script>
+    /*
+     * Filtrage d'aperçu uniquement.
+     * Dans la vraie page laboratoires.php, la recherche sera faite côté
+     * serveur avec PDO et des requêtes préparées (sécurité).
+     */
+    (function () {
+      'use strict';
+
+      var search = document.getElementById('labSearch');
+      var city = document.getElementById('labCity');
+      var reset = document.getElementById('resetFilters');
+      var table = document.getElementById('labsTable');
+      var empty = document.getElementById('noResults');
+
+      if (!search || !city || !reset || !table || !empty) {
+        return;
+      }
+
+      var rows = Array.prototype.slice.call(table.querySelectorAll('tbody tr[data-city]'));
+
+      function applyFilter() {
+        var query = search.value.trim().toLowerCase();
+        var selectedCity = city.value;
+        var visible = 0;
+
+        rows.forEach(function (row) {
+          var text = row.textContent.toLowerCase();
+          var matchesText = query === '' || text.indexOf(query) !== -1;
+          var matchesCity = selectedCity === '' || row.getAttribute('data-city') === selectedCity;
+          var ok = matchesText && matchesCity;
+
+          row.style.display = ok ? '' : 'none';
+          if (ok) {
+            visible++;
+          }
+        });
+
+        empty.style.display = visible === 0 ? '' : 'none';
+      }
+
+      search.addEventListener('input', applyFilter);
+      city.addEventListener('change', applyFilter);
+
+      reset.addEventListener('click', function () {
+        search.value = '';
+        city.value = '';
+        applyFilter();
+        search.focus();
+      });
+    })();
+  </script>
+</body>
+</html>
