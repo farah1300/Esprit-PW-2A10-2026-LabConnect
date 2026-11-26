@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mes résultats – LabConnect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/portail.css">
+</head>
+<body data-page="resultats">
+
+  <!-- Connexion (affichée seulement si le patient n'est pas connecté) -->
+  <section class="login-wrap" id="login" hidden>
+    <form class="login" id="login-form" novalidate>
+      <img class="login-logo" src="images/logo.png" alt="LabConnect">
+      <h1>Espace patient</h1>
+      <p>Connectez-vous pour consulter vos résultats d'analyses.</p>
+      <div class="alert" id="login-alert" role="alert"></div>
+      <label for="l-email">E-mail</label>
+      <input id="l-email" type="text" autocomplete="username" inputmode="email">
+      <label for="l-password">Mot de passe</label>
+      <input id="l-password" type="password" autocomplete="current-password">
+      <button class="btn" id="login-btn" type="submit">Se connecter</button>
+      <p class="alt">Pas encore de compte ? <a href="inscription.html">Créer mon compte</a></p>
+      <p class="alt"><a href="/">← Retour au site</a></p>
+    </form>
+  </section>
+
+  <!-- Mes résultats (déplacé dans le menu latéral par portail.js) -->
+  <main id="portal" hidden>
+    <div class="page-head">
+      <div>
+        <h1>Mes résultats d'analyses</h1>
+        <p>Retrouvez ici vos résultats publiés par le laboratoire. Le téléchargement est disponible après règlement.</p>
+      </div>
+      <a class="btn" href="/#appointment">+ Prendre rendez-vous</a>
+    </div>
+
+    <div class="alert" id="list-alert" role="alert"></div>
+
+    <div class="stats">
+      <div class="stat"><small>Total</small><div id="s-total">0</div></div>
+      <div class="stat v"><small>Payés</small><div id="s-payes">0</div></div>
+      <div class="stat o"><small>À payer</small><div id="s-apayer">0</div></div>
+    </div>
+
+    <div class="filters">
+      <input id="q" type="text" placeholder="Rechercher (référence, analyse, catégorie)…" aria-label="Rechercher">
+      <select id="filtre" aria-label="Filtrer par paiement">
+        <option value="">Tous</option>
+        <option value="payes">Payés</option>
+        <option value="apayer">À payer</option>
+      </select>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Référence</th><th>Analyse</th><th>Publié le</th><th>Paiement</th><th>Actions</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="js/portail.js"></script>
+  <script src="js/resultats.js"></script>
+</body>
+</html>

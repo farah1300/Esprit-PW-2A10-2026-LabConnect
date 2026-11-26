@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Créer mon compte – LabConnect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/portail.css">
+</head>
+<body data-page="inscription">
+  <section class="login-wrap">
+    <form class="login" id="register-form" novalidate>
+      <img class="login-logo" src="images/logo.png" alt="LabConnect">
+      <h1>Créer mon compte</h1>
+      <p>Si le laboratoire a déjà créé votre dossier, utilisez le même e-mail pour l'activer.</p>
+      <div class="alert" id="register-alert" role="alert"></div>
+      <label for="r-nom">Nom complet</label>
+      <input id="r-nom" type="text" autocomplete="name">
+      <label for="r-email">E-mail</label>
+      <input id="r-email" type="text" autocomplete="email" inputmode="email">
+      <label for="r-tel">Téléphone (facultatif)</label>
+      <input id="r-tel" type="text" autocomplete="tel" inputmode="tel">
+      <label for="r-password">Mot de passe</label>
+      <input id="r-password" type="password" autocomplete="new-password">
+      <label for="r-password2">Confirmer le mot de passe</label>
+      <input id="r-password2" type="password" autocomplete="new-password">
+      <button class="btn" id="register-btn" type="submit">Créer mon compte</button>
+      <p class="alt">Déjà inscrit ? <a href="resultats.html">Se connecter</a></p>
+    </form>
+  </section>
+  <script src="js/portail.js"></script>
+  <script src="js/resultats.js"></script>
+</body>
+</html>

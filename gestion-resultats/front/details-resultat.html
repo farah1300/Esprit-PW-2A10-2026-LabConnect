@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Détails du résultat – LabConnect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/portail.css">
+</head>
+<body data-page="details">
+  <main hidden>
+    <div class="crumbs"><a href="resultats.html">Mes résultats</a> › Détails</div>
+    <div class="alert" id="page-alert" role="alert"></div>
+    <div class="alert good show" id="banner" role="status" hidden>Paiement accepté. Vous pouvez maintenant télécharger votre résultat.</div>
+
+    <div id="details">
+      <div class="page-head">
+        <div>
+          <h1><span id="d-ref"></span> <span class="badge publie">publié</span></h1>
+          <p id="d-sub"></p>
+        </div>
+        <div id="d-action"></div>
+      </div>
+
+      <section class="card">
+        <h2>Analyse</h2>
+        <dl class="kv" id="d-info"></dl>
+      </section>
+
+      <section class="card">
+        <h2>Valeurs mesurées</h2>
+        <table>
+          <thead><tr><th>Paramètre</th><th>Valeur</th><th>Unité</th><th>Référence</th><th>Indicateur</th></tr></thead>
+          <tbody id="d-lignes"></tbody>
+        </table>
+        <p class="comment" id="d-comment"></p>
+      </section>
+
+      <section class="card">
+        <h2>Document joint</h2>
+        <div id="d-doc"></div>
+      </section>
+
+      <section class="card">
+        <h2>Historique</h2>
+        <ul class="hist" id="d-hist"></ul>
+      </section>
+    </div>
+  </main>
+
+  <!-- Paiement (simulation) -->
+  <div class="modal-bg" id="pay-modal">
+    <form class="modal" id="pay-form" role="dialog" aria-modal="true" aria-labelledby="pay-title" novalidate>
+      <h2 id="pay-title">Régler mon résultat</h2>
+      <p class="sub" id="pay-sub"></p>
+      <div class="alert" id="pay-alert" role="alert"></div>
+      <label for="p-titulaire">Titulaire de la carte</label>
+      <input id="p-titulaire" type="text" autocomplete="cc-name">
+      <label for="p-numero">Numéro de carte</label>
+      <input id="p-numero" type="text" inputmode="numeric" autocomplete="cc-number" placeholder="4242 4242 4242 4242">
+      <div class="row2">
+        <div><label for="p-exp">Expiration (MM/AA)</label><input id="p-exp" type="text" inputmode="numeric" autocomplete="cc-exp" placeholder="12/30"></div>
+        <div><label for="p-cvc">CVC</label><input id="p-cvc" type="text" inputmode="numeric" autocomplete="cc-csc" placeholder="123"></div>
+      </div>
+      <p class="note">Paiement en mode démonstration : aucune banque réelle, seuls les 4 derniers chiffres sont conservés.</p>
+      <div class="form-actions">
+        <button class="btn" id="pay-btn" type="submit">Payer</button>
+        <button class="btn ghost" id="pay-cancel" type="button">Annuler</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="js/portail.js"></script>
+  <script src="js/resultats.js"></script>
+</body>
+</html>

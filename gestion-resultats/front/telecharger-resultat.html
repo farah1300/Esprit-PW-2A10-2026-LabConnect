@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Télécharger mon résultat – LabConnect</title>
+  <link rel="stylesheet" href="css/portail.css">
+</head>
+<body>
+  <!-- Paiement puis téléchargement : la fenêtre de paiement s'ouvre sur la page de détails. -->
+  <script>
+    (function () {
+      var id = new URLSearchParams(location.search).get('id');
+      location.replace('details-resultat.html' + (id ? '?id=' + encodeURIComponent(id) + '&payer=1' : ''));
+    })();
+  </script>
+  <noscript><p style="padding:24px"><a href="resultats.html">Retour à mes résultats</a></p></noscript>
+</body>
+</html>
