@@ -1,371 +1,190 @@
-# LabConnect — Module 1 : Gestion des utilisateurs
+# LabConnect — Gestion des laboratoires
 
-Ce dossier contient le module **Gestion des utilisateurs** du projet LabConnect
-(PHP / MySQL / PDO / MVC). Il couvre les 9 fonctionnalités demandées :
+Ce document décrit uniquement le module **Gestion des laboratoires** du projet
+LabConnect (PHP / MySQL / PDO / MVC). L'authentification, les rôles, le CSRF et
+la configuration viennent du module Gestion des utilisateurs.
 
-1. Ajouter un utilisateur
-2. Lister les utilisateurs
-3. Afficher la fiche d'un utilisateur
-4. Modifier un utilisateur
-5. Supprimer un utilisateur
-6. Rechercher un utilisateur
-7. Attribuer un rôle (Admin ou Patient)
-8. Activer / désactiver un compte
-9. Gérer les informations de connexion (e-mail, mot de passe)
+Fonctionnalités :
+
+1. Lister les laboratoires
+2. Rechercher (nom, ville, adresse, e-mail) et filtrer par ville
+3. Ajouter un laboratoire (modale)
+4. Afficher la fiche d'un laboratoire
+5. Modifier un laboratoire
+6. Supprimer un laboratoire (avec confirmation)
 
 ---
 
-## 1. Arborescence utile
+## 1. Fichiers du module
 
 ```
 gestion laboratoire/
-├── config/
-│   ├── config.php              # BASE_URL, nom de l'application, timezone
-│   └── database.php            # connexion PDO (hôte, base, utilisateur, mot de passe)
-├── includes/
-│   ├── auth.php                # session, requireLogin(), requireRole(), CSRF, flash
-│   ├── helpers.php             # e(), formatDateTime(), roleBadgeClass()
-│   ├── Validator.php           # validation serveur commune
-│   ├── header.php              # en-tête HTML + barre de navigation
-│   ├── sidebar.php             # menu selon le rôle
-│   └── footer.php              # pied de page + scripts
-├── assets/
-│   └── js/validation.js        # validation JavaScript (confort, pas sécurité)
-├── gestion-utilisateur/
-│   ├── utilisateurs.php        # liste + recherche + suppression + activation
-│   ├── ajouter-utilisateur.php # ajout
-│   ├── modifier-utilisateur.php# modification
-│   ├── details-utilisateur.php # fiche
-│   ├── roles.php               # rôles + attribution
-│   ├── login.php               # connexion
-│   ├── logout.php              # déconnexion
-│   ├── inscription.php         # inscription publique (Patient)
-│   ├── controllers/
-│   │   └── UtilisateurController.php
-│   ├── models/
-│   │   ├── Utilisateur.php
-│   │   └── Role.php
-│   └── sql/
-│       └── utilisateurs.sql    # schéma + données de référence
-└── README.md                   # ce fichier
+├── controllers/
+│   └── LaboratoireController.php   # index, create, show, edit, destroy
+├── laboratoires.php                # liste + recherche + modale d'ajout
+├── voir-laboratoire.php            # fiche
+├── modifier-laboratoire.php        # modification (Admin)
+├── supprimer-laboratoire.php       # confirmation + suppression (Admin)
+├── laboratoires.html               # maquette statique (référence)
+└── ajouter-laboratoire.html        # maquette statique (référence)
 ```
+
+Il n'y a pas de page `ajouter-laboratoire.php` : l'ajout se fait dans une
+**modale Bootstrap** de `laboratoires.php`.
 
 ---
 
-## 2. Prérequis
+## 2. Droits d'accès
 
-- **PHP 8.0 ou supérieur** (le code utilise les types `mixed`, les propriétés
-  typées et `str_ends_with`).
-- **MySQL 8.x** ou **MariaDB 10.4+** (XAMPP convient).
-- Extensions PHP activées : `pdo_mysql`, `mbstring`, `openssl`.
-- Un navigateur récent.
+| Page / action | Patient | Admin |
+|---|:---:|:---:|
+| Liste, recherche, filtre | oui | oui |
+| Fiche (`voir-laboratoire.php`) | oui | oui |
+| Ajouter | non | oui |
+| Modifier | non (403) | oui |
+| Supprimer | non (403) | oui |
+
+Les boutons d'administration sont masqués pour le Patient, et le serveur
+refuse aussi l'action si la requête est forgée (`requireRole('Admin')` en haut
+de page puis dans le contrôleur).
 
 ---
 
-## 3. Installation
+## 3. Pages et méthodes du contrôleur
 
-### 3.1 Placer le projet
+| # | Fonctionnalité | Page | Méthode |
+|---|---|---|---|
+| 1 | Lister / rechercher / filtrer | `laboratoires.php` | `index()` |
+| 2 | Ajouter | modale de `laboratoires.php` (`action=create`) | `create()` |
+| 3 | Fiche | `voir-laboratoire.php?id=` | `show()` |
+| 4 | Modifier | `modifier-laboratoire.php?id=` | `edit()` |
+| 5 | Supprimer | `supprimer-laboratoire.php?id=` | `destroy()` |
 
-Copier le dossier `gestion laboratoire` dans le répertoire web de XAMPP :
+### Liste (`laboratoires.php`)
+- Paramètres GET : `q` (recherche) et `ville` (filtre).
+- Quatre statistiques : laboratoires, villes couvertes, analyses au catalogue,
+  laboratoires actifs.
+- Colonnes : laboratoire (nom + e-mail), ville, adresse, téléphone, nombre
+  d'analyses, actions.
+- Un laboratoire inactif porte un badge « Inactif ».
+- Après une erreur dans la modale d'ajout, elle se rouvre automatiquement avec
+  les valeurs saisies.
 
-```
-C:\xampp\htdocs\gestion laboratoire\
-```
+### Fiche (`voir-laboratoire.php`)
+Nom, ville, adresse, téléphone, e-mail, horaires, nombre d'analyses proposées,
+date d'enregistrement, statut, et la liste des analyses avec leurs prix
+(lecture seule).
 
-> Le nom contient un espace : `config/config.php` l'encode automatiquement en
-> `%20` dans `BASE_URL`. Ne pas renommer le dossier `gestion-utilisateur`
-> (sans espace), car `USER_MODULE_URL` s'appuie sur ce nom.
+### Modification (`modifier-laboratoire.php`)
+Même formulaire que l'ajout, pré-rempli. L'e-mail doit rester unique.
 
-### 3.2 Démarrer les services
+### Suppression (`supprimer-laboratoire.php`)
+- **GET** : affiche une page de confirmation avec le nombre d'offres liées.
+- **POST** : vérifie le rôle, la méthode et le jeton CSRF, puis supprime.
+- Les offres du laboratoire sont supprimées en cascade ; le catalogue global des
+  analyses n'est pas modifié.
 
-Dans le panneau XAMPP, démarrer **Apache** puis **MySQL**.
+---
 
-### 3.3 Créer la base et les tables
+## 4. Données (schéma attendu)
 
-Deux méthodes possibles.
+D'après les champs utilisés par les pages (noms exacts à confirmer avec le
+modèle et le script SQL) :
 
-**A. phpMyAdmin**
-
-1. Ouvrir `http://localhost/phpmyadmin`.
-2. Onglet **Importer**.
-3. Choisir `gestion-utilisateur/sql/utilisateurs.sql`.
-4. Exécuter.
-
-**B. Ligne de commande**
-
-```bash
-mysql -u root -p < "gestion-utilisateur/sql/utilisateurs.sql"
-```
-
-Sous PowerShell (Windows), la redirection `<` n'est pas supportée ; utiliser :
-
-```powershell
-Get-Content "gestion-utilisateur/sql/utilisateurs.sql" -Raw |
-  & "C:\xampp\mysql\bin\mysql.exe" -u root
-```
-
-Le script est idempotent : il crée la base `labconnect` si besoin, crée
-`roles` et `utilisateurs`, insère les rôles `Admin` et `Patient`, puis crée
-un compte administrateur de démonstration **uniquement si aucun Admin
-n'existe**.
-
-### 3.4 Compte administrateur de démonstration
-
-| Champ | Valeur |
+| Colonne | Description |
 |---|---|
-| E-mail | `admin@labconnect.tn` |
-| Mot de passe | `Admin1234` |
+| `id` | clé primaire |
+| `nom` | nom du laboratoire |
+| `ville` | ville |
+| `adresse` | adresse |
+| `telephone` | 8 chiffres |
+| `email` | unique |
+| `horaires` | facultatif |
+| `actif` | 1 = actif, 0 = inactif |
+| `created_at` | date d'enregistrement |
 
-> **Important :** changer ce mot de passe après la première connexion
-> (page `modifier-utilisateur.php`).
->
-> Si le hash fourni ne fonctionne pas sur votre installation, générez-en un
-> nouveau avec PHP :
->
-> ```bash
-> php -r "echo password_hash('Admin1234', PASSWORD_DEFAULT), PHP_EOL;"
-> ```
->
-> puis remplacez la valeur dans le `INSERT` du fichier SQL.
+`nb_analyses` est calculé par la requête (nombre d'offres du laboratoire).
 
 ---
 
-## 4. Configuration
+## 5. Validation
 
-### 4.1 Base de données
+| Champ | Règle |
+|---|---|
+| Nom | obligatoire, 150 caractères max |
+| Ville | obligatoire, 100 caractères max |
+| Adresse | obligatoire, 255 caractères max |
+| Téléphone | obligatoire, 8 chiffres (ex. `71234567`) |
+| E-mail | obligatoire, valide, 190 caractères max, unique |
+| Horaires | facultatif, 100 caractères max |
+| Actif | case à cocher (cochée par défaut à l'ajout) |
 
-Fichier : `config/database.php`
-
-```php
-$dbHost = 'localhost';
-$dbName = 'labconnect';
-$dbUser = 'root';
-$dbPass = ''; // XAMPP : vide par défaut
-```
-
-Adapter `$dbUser` / `$dbPass` si votre MySQL possède un mot de passe.
-
-Le fichier fixe aussi :
-
-- `PDO::ATTR_ERRMODE => ERRMODE_EXCEPTION` : les erreurs SQL ne sont pas
-  silencieuses ;
-- `PDO::ATTR_DEFAULT_FETCH_MODE => FETCH_ASSOC` ;
-- `PDO::ATTR_EMULATE_PREPARES => false` : vraies requêtes préparées MySQL.
-
-### 4.2 URL de base
-
-Fichier : `config/config.php`
-
-`BASE_URL` est calculé automatiquement à partir de `$_SERVER['SCRIPT_NAME']`.
-Il n'y a rien à modifier si le projet est dans `htdocs`. Le module
-`gestion-utilisateur` est retiré du chemin pour que les liens vers `assets/`
-et `index.php` restent corrects.
-
-### 4.3 Schéma de la table `utilisateurs`
-
-| Colonne | Type | Rôle |
-|---|---|---|
-| `id` | INT UNSIGNED AUTO_INCREMENT | clé primaire |
-| `nom` | VARCHAR(60) | nom |
-| `prenom` | VARCHAR(60) | prénom |
-| `email` | VARCHAR(190) UNIQUE | identifiant de connexion |
-| `telephone` | CHAR(8) NULL | 8 chiffres, facultatif |
-| `mot_de_passe` | VARCHAR(255) | hash `password_hash()` |
-| `id_role` | INT UNSIGNED FK → `roles.id` | Admin ou Patient |
-| `statut` | TINYINT(1) | 1 = actif, 0 = désactivé |
-| `date_creation` | TIMESTAMP | date de création |
-| `last_login` | TIMESTAMP NULL | dernière connexion (extra d'affichage) |
-
-**Correspondance dans le code :** le modèle `Utilisateur.php` expose des
-alias (`password_hash`, `role_id`, `is_active`, `created_at`) pour que le
-contrôleur et les vues restent lisibles. La correspondance est faite
-uniquement dans les requêtes SQL du modèle et dans `includes/auth.php`.
+La validation fait foi côté serveur. Les attributs HTML (`required`,
+`maxlength`) ne sont qu'un confort.
 
 ---
 
-## 5. Lancement
+## 6. Sécurité
 
-1. Ouvrir :
-   `http://localhost/gestion%20laboratoire/gestion-utilisateur/login.php`
-2. Se connecter avec le compte Admin de démonstration.
-3. Le tableau de bord puis le menu **Module 1 — Utilisateurs** donnent accès
-   à `utilisateurs.php` et `roles.php`.
-
-Si Apache n'utilise pas le port 80, remplacer `localhost` par
-`localhost:8080` (ou le port configuré).
-
----
-
-## 6. Fonctionnalités et pages
-
-| # | Fonctionnalité | Page / action |
-|---|---|---|
-| 1 | Ajouter | `ajouter-utilisateur.php` → `UtilisateurController::create()` |
-| 2 | Lister | `utilisateurs.php` → `index()` |
-| 3 | Détails | `details-utilisateur.php` → `show()` |
-| 4 | Modifier | `modifier-utilisateur.php` → `edit()` |
-| 5 | Supprimer | bouton POST dans `utilisateurs.php` → `destroy()` |
-| 6 | Rechercher | formulaire GET `q` + filtre `role` dans `utilisateurs.php` |
-| 7 | Attribuer un rôle | `roles.php` → `changeRole()` |
-| 8 | Activer / désactiver | bouton POST dans `utilisateurs.php` → `toggleActive()` |
-| 9 | Gérer la connexion | e-mail + mot de passe dans `modifier-utilisateur.php` |
+- **Accès** : `requireRole('Admin')` avant la lecture de l'`id` (un Patient reçoit
+  un 403) ; `requireLogin()` dans le contrôleur pour la liste et la fiche.
+- **CSRF** : jeton sur tous les formulaires POST (ajout, modification, suppression).
+- **Suppression** : jamais par simple lien. Le lien GET n'affiche qu'une
+  confirmation ; la suppression se fait en POST + CSRF + `confirm()`.
+- **Identifiant** : `filter_input(FILTER_VALIDATE_INT)` ; un `id` invalide
+  redirige avec « Laboratoire introuvable ».
+- **XSS** : toute sortie passe par `e()`.
+- **SQL** : requêtes préparées ; jokers `LIKE` neutralisés dans la recherche.
+- **Format** : `formatPhone()` pour l'affichage des téléphones.
 
 ---
 
-## 7. Sécurité mise en place
+## 7. Tests manuels
 
-- **Contrôle d'accès** : `requireRole('Admin')` en haut de chaque page Admin
-  **et** au début de chaque méthode du contrôleur (défense en profondeur).
-- **Mots de passe** : `password_hash(..., PASSWORD_DEFAULT)` à la création et
-  à la modification ; `password_verify()` à la connexion. Jamais de mot de
-  passe en clair en base ni dans le HTML.
-- **Comptes désactivés** : refusés à la connexion (`statut = 0`) et
-  déconnectés immédiatement par `requireLogin()` si le statut change.
-- **E-mail unique** : contrainte `UNIQUE` en base + validation PHP +
-  interception de l'erreur SQL `1062` en cas de course entre deux requêtes.
-- **CSRF** : jeton `random_bytes(32)` + `hash_equals()` sur tous les POST.
-- **Session** : `use_strict_mode`, cookie `HttpOnly`, `SameSite=Lax`,
-  `session_regenerate_id(true)` à la connexion.
-- **SQL** : uniquement des requêtes préparées ; aucune concaténation de
-  valeur utilisateur.
-- **XSS** : toute sortie dynamique passe par `e()` / `htmlspecialchars()`.
-- **Règles métier** : un Admin ne peut ni supprimer ni désactiver son propre
-  compte ; le dernier Admin actif ne peut être ni supprimé, ni désactivé, ni
-  rétrogradé.
+### Accès
+- [ ] Sans connexion, `laboratoires.php` redirige vers la connexion.
+- [ ] Patient : voit la liste et les fiches, sans boutons Ajouter / Modifier / Supprimer.
+- [ ] Patient : `modifier-laboratoire.php?id=1` et `supprimer-laboratoire.php?id=1` sont refusés (403).
 
----
+### Ajout
+- [ ] Ajout valide : le laboratoire apparaît dans la liste.
+- [ ] E-mail déjà utilisé : erreur, la modale se rouvre avec les valeurs saisies.
+- [ ] Téléphone de 7 chiffres ou avec des lettres : erreur.
+- [ ] Nom, ville ou adresse vides : erreur.
 
-## 8. Validation PHP + JavaScript
+### Recherche et filtre
+- [ ] Recherche par nom, ville, adresse et e-mail : résultats corrects.
+- [ ] Filtre par ville, puis « Réinitialiser » : la liste complète revient.
+- [ ] Recherche `%` : aucun résultat parasite.
+- [ ] Aucun résultat : message « Aucun laboratoire ne correspond ».
 
-| Formulaire | Validation PHP | Validation JS |
-|---|---|---|
-| Ajout (`ajouter-utilisateur.php`) | `Validator::validateUtilisateur()` | `data-validate="user"` |
-| Modification (`modifier-utilisateur.php`) | `Validator::validateUtilisateur()` + règles dernier Admin | `data-validate="user"` + `data-password-optional="1"` |
-| Recherche (`utilisateurs.php`) | `UtilisateurController::index()` : type, trim, 100 caractères max, rôle existant | `data-validate="search"` + règle `q` (100 caractères) |
-| Attribution de rôle (`roles.php`) | `changeRole()` : rôle existant, dernier Admin actif | `data-validate="role"` + `required` |
-| Connexion (`login.php`) | `login()` : champs obligatoires, `password_verify` | `data-validate="login"` |
-| Inscription (`inscription.php`) | `Validator` + rôle Patient forcé | `data-validate="user"` |
+### Fiche et modification
+- [ ] `voir-laboratoire.php?id=999999` et `?id=abc` : « Laboratoire introuvable ».
+- [ ] Modifier sans changer l'e-mail : pas d'erreur « déjà utilisé ».
+- [ ] Décocher « actif » : badge « Inactif » dans la liste et sur la fiche.
 
-Le JavaScript améliore le confort mais **ne remplace jamais** PHP : il peut
-être désactivé par l'utilisateur.
+### Suppression
+- [ ] Ouvrir `supprimer-laboratoire.php?id=…` : rien n'est supprimé avant la confirmation.
+- [ ] La confirmation indique le bon nombre d'offres liées.
+- [ ] Après confirmation, le laboratoire disparaît de la liste.
+- [ ] POST sans jeton CSRF : erreur 403.
 
 ---
 
-## 9. Tests manuels (checklist)
-
-### Installation / accès
-- [ ] La base `labconnect` existe et contient `roles` + `utilisateurs`.
-- [ ] `admin@labconnect.tn` / `Admin1234` permet de se connecter.
-- [ ] Sans connexion, `utilisateurs.php` redirige vers `login.php`.
-- [ ] Connecté en **Patient**, `utilisateurs.php` affiche « Accès refusé » et
-      redirige vers le tableau de bord.
-- [ ] Connecté en **Admin**, le menu affiche Utilisateurs et Rôles.
-
-### CRUD
-- [ ] Ajouter un Patient avec des données valides : le compte apparaît dans
-      la liste et peut se connecter.
-- [ ] Ajouter avec un e-mail déjà utilisé : message « déjà utilisée ».
-- [ ] Ajouter avec un mot de passe de 7 caractères : message d'erreur.
-- [ ] Ajouter avec un téléphone invalide (`123`) : message d'erreur.
-- [ ] Modifier le nom, le prénom, l'e-mail, le téléphone : la fiche est à jour.
-- [ ] Modifier sans mot de passe : l'ancien mot de passe fonctionne encore.
-- [ ] Modifier avec un nouveau mot de passe : l'ancien ne fonctionne plus.
-- [ ] Supprimer un Patient : il disparaît de la liste.
-- [ ] Ouvrir `details-utilisateur.php?id=999999` : message « introuvable ».
-- [ ] Ouvrir `modifier-utilisateur.php?id=abc` : message « introuvable ».
-
-### Recherche
-- [ ] Rechercher par nom, prénom et e-mail : les résultats correspondent.
-- [ ] Rechercher `%` : aucun résultat parasite (les jokers sont neutralisés).
-- [ ] Filtrer par rôle Admin / Patient : seuls les bons comptes s'affichent.
-- [ ] Saisir plus de 100 caractères : message d'erreur (JS) ; en désactivant
-      JS, le serveur tronque et affiche aussi le message.
-- [ ] Le compteur « X utilisateurs affichés » est correct.
-
-### Rôles
-- [ ] Changer un Patient en Admin : le badge et l'accès changent.
-- [ ] Changer un Admin en Patient alors qu'un autre Admin actif existe :
-      autorisé.
-- [ ] Tenter de rétrograder le **dernier Admin actif** : refusé (bouton
-      désactivé + contrôle serveur).
-- [ ] Forger un POST `role_id=999` : message « rôle invalide ».
-
-### Activation / désactivation
-- [ ] Désactiver un Patient : badge « Désactivé ».
-- [ ] Ce Patient ne peut plus se connecter : message « compte désactivé ».
-- [ ] Un Patient déjà connecté est déconnecté à la requête suivante.
-- [ ] Réactiver le compte : la connexion fonctionne à nouveau.
-- [ ] Tenter de désactiver son propre compte Admin : refusé.
-- [ ] Tenter de désactiver le dernier Admin actif : refusé.
-
-### Sécurité
-- [ ] Supprimer son propre compte Admin : refusé.
-- [ ] Soumettre un formulaire sans jeton CSRF : erreur 403.
-- [ ] Taper une URL Admin en étant Patient : accès refusé.
-- [ ] Vérifier qu'aucun mot de passe en clair n'apparaît dans la base
-      (`SELECT mot_de_passe FROM utilisateurs`).
-- [ ] Vérifier qu'un e-mail en double est refusé même par requête forgée.
-
----
-
-## 10. Dépannage
+## 8. Dépannage
 
 | Symptôme | Cause probable | Solution |
 |---|---|---|
-| `Table 'labconnect.users' doesn't exist` | ancienne version du code | ce module utilise désormais `utilisateurs` ; réimporter `sql/utilisateurs.sql` |
-| `Table 'labconnect.utilisateurs' doesn't exist` | SQL non importé | importer `sql/utilisateurs.sql` |
-| `Access denied for user 'root'` | mot de passe MySQL | renseigner `$dbPass` dans `config/database.php` |
-| Page blanche | erreur PHP | activer `display_errors` en local ou consulter `C:\xampp\apache\logs\error.log` |
-| Connexion impossible avec `Admin1234` | hash de démonstration | régénérer le hash (voir §3.4) |
-| Le menu ne s'affiche pas | rôle incorrect en session | se déconnecter puis se reconnecter |
-| Liens cassés | dossier renommé | garder `gestion-utilisateur` et vérifier `BASE_URL` |
+| Page blanche | contrôleur ou modèle manquant | vérifier `controllers/LaboratoireController.php` et ses `require` |
+| Liste des villes vide | aucun laboratoire en base | ajouter un laboratoire |
+| « Table … doesn't exist » | script SQL non importé | importer les tables du module |
+| Erreur de clé étrangère à la suppression | cascade absente | ajouter `ON DELETE CASCADE` sur la table des offres |
+| La modale d'ajout ne s'ouvre pas | jQuery ou Bootstrap non chargés | vérifier `footer.php` et `assets/js` |
 
 ---
 
-## 11. Transparence sur l'utilisation de l'IA
+## 9. Limites connues
 
-Ce module a été construit avec l'aide d'un assistant IA. Pour être honnête
-avec l'équipe pédagogique, voici la liste des fichiers concernés.
-
-### 11.1 Fichiers écrits ou modifiés par l'IA dans cette session
-
-| Fichier | Nature de l'intervention |
-|---|---|
-| `gestion-utilisateur/models/Utilisateur.php` | réécriture des requêtes SQL pour la table officielle `utilisateurs` (alias `password_hash`, `role_id`, `is_active`, `created_at`), échappement des jokers `LIKE` |
-| `gestion-utilisateur/models/Role.php` | `countUsers()` adapté à `utilisateurs.id_role` |
-| `includes/auth.php` | requête de `requireLogin()` adaptée à `utilisateurs` (`statut`, `id_role`) |
-| `gestion-utilisateur/sql/utilisateurs.sql` | schéma officiel `utilisateurs` + migration commentée depuis `users` |
-| `gestion-utilisateur/controllers/UtilisateurController.php` | validation serveur de la recherche (type, 100 caractères) |
-| `gestion-utilisateur/utilisateurs.php` | `requireRole('Admin')` en haut de page, `data-validate="search"`, `maxlength="100"`, affichage de l'erreur |
-| `gestion-utilisateur/ajouter-utilisateur.php` | `requireRole('Admin')` en haut de page |
-| `gestion-utilisateur/modifier-utilisateur.php` | `requireRole('Admin')` avant la lecture de l'ID |
-| `gestion-utilisateur/details-utilisateur.php` | `requireRole('Admin')` avant la lecture de l'ID |
-| `gestion-utilisateur/roles.php` | `requireRole('Admin')` en haut de page, `data-validate="role"`, `required`, emplacement d'erreur |
-| `assets/js/validation.js` | règle de recherche `q`, prise en charge des erreurs hors `.form-group` |
-| `README.md` | ce document |
-| `AUDIT.md` | audit détaillé, corrections et checklist |
-
-### 11.2 Fichiers préexistants non modifiés dans cette session
-
-`login.php`, `inscription.php`, `logout.php`, `config/config.php`,
-`config/database.php`, `includes/helpers.php`, `includes/Validator.php`,
-`includes/header.php`, `includes/sidebar.php`, `includes/footer.php`,
-`index.php`.
-
-> Les membres de l'équipe doivent vérifier et savoir expliquer chaque ligne
-> listée ci-dessus. L'IA ne remplace pas la compréhension du code.
-
----
-
-## 12. Limites connues / choix assumés
-
-- `inscription.php` (auto-inscription Patient) n'est pas dans les 9
-  fonctionnalités officielles, mais elle est conservée car la page de
-  connexion y renvoie. Le rôle est forcé à `Patient`.
-- `logout.php` est appelé par un lien GET. Un CSRF de déconnexion est peu
-  dangereux (il ne fait que déconnecter), mais il pourrait être transformé en
-  POST + jeton si l'enseignant l'exige.
-- `last_login` est une colonne d'affichage supplémentaire, absente du schéma
-  minimal officiel ; elle ne participe à aucune règle métier.
-- Les rôles sont des données de référence : aucune page ne permet de créer ou
-  supprimer un rôle, conformément au périmètre.
+- `laboratoires.php` utilise un lien GET vers `supprimer-laboratoire.php` : il
+  n'affiche qu'une confirmation, la suppression réelle reste en POST + CSRF.
+- Les maquettes `.html` sont conservées pour référence et ne sont plus utilisées.
