@@ -1,0 +1,83 @@
+:root {
+    --bleu: #1e6fd9; --bleu-fonce: #0f3d7a; --fond: #f3f6fa; --texte: #1f2937;
+    --bord: #dde3ea; --vert: #1e8449; --rouge: #c0392b;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: "Segoe UI", Arial, sans-serif; background: var(--fond); color: var(--texte); }
+a { color: var(--bleu); }
+
+/* En-tete et menu */
+.entete { background: var(--bleu-fonce); color: #fff; }
+body.back .entete { background: #1f2937; }
+.entete-int { max-width: 1000px; margin: 0 auto; padding: 14px 20px; display: flex;
+              justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+.logo { color: #fff; font-size: 22px; font-weight: 700; text-decoration: none; }
+.logo span { color: #7fc1ff; }
+.menu a { color: #dbe9ff; text-decoration: none; margin-left: 18px; padding: 6px 0; border-bottom: 2px solid transparent; }
+.menu a:hover, .menu a.actif { color: #fff; border-bottom-color: #7fc1ff; }
+
+/* Contenu */
+.conteneur { max-width: 1000px; margin: 24px auto; background: #fff; padding: 24px;
+             border-radius: 10px; box-shadow: 0 2px 8px rgba(0, 0, 0, .06); }
+h1 { margin-top: 0; color: var(--bleu-fonce); font-size: 26px; }
+.pied { text-align: center; color: #6b7280; font-size: 13px; padding: 18px; }
+
+/* Tableaux */
+table { width: 100%; border-collapse: collapse; }
+th, td { border-bottom: 1px solid var(--bord); padding: 10px 8px; text-align: left; vertical-align: top; }
+th { background: #eef3f9; color: var(--bleu-fonce); font-size: 14px; }
+tr:hover td { background: #fafcff; }
+
+/* Boutons */
+button, .btn { background: var(--bleu); color: #fff; border: 0; padding: 8px 14px; border-radius: 6px;
+               cursor: pointer; text-decoration: none; font-size: 14px; display: inline-block; font-family: inherit; }
+button:hover, .btn:hover { background: var(--bleu-fonce); }
+.btn-sec { background: #e5e7eb; color: #1f2937; }
+.btn-sec:hover { background: #d1d5db; }
+.btn-danger { background: var(--rouge); }
+.btn-danger:hover { background: #922b21; }
+td button, td .btn { padding: 5px 10px; font-size: 13px; }
+.actions { margin-top: 16px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+
+/* Formulaires */
+label { display: block; margin-top: 14px; font-weight: 600; }
+input, select { width: 100%; padding: 9px; border: 1px solid #c5ced8; border-radius: 6px; font-size: 15px; font-family: inherit; }
+input:focus, select:focus { outline: 2px solid #9cc4f5; border-color: var(--bleu); }
+.erreur { color: var(--rouge); font-size: 14px; display: block; min-height: 18px; }
+form.formulaire button { margin-top: 18px; }
+
+/* Messages */
+.ok { color: var(--vert); }
+.ko { color: var(--rouge); }
+p.ok, p.ko { padding: 10px 14px; border-radius: 6px; }
+p.ok { background: #d5f5e3; }
+p.ko { background: #fadbd8; }
+
+/* Badges de statut */
+.badge { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 13px; font-weight: 600; }
+.badge-en_attente { background: #fdebd0; color: #9c640c; }
+.badge-confirme { background: #d6eaf8; color: #1b4f72; }
+.badge-en_cours { background: #e8daef; color: #5b2c6f; }
+.badge-effectue { background: #d5f5e3; color: #1e8449; }
+.badge-refuse { background: #fadbd8; color: #922b21; }
+.badge-annule { background: #e5e7e9; color: #566573; }
+
+/* Formulaire de recherche */
+.recherche { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end;
+             background: #f0f4f8; padding: 14px; border-radius: 8px; margin: 16px 0; }
+.recherche > div { flex: 1 1 160px; }
+.recherche label { margin-top: 0; }
+
+/* Chronologie du suivi */
+.suivi { list-style: none; display: flex; padding: 0; margin: 20px 0; }
+.suivi li { flex: 1; text-align: center; padding: 12px 4px; background: #e5e8eb; color: #777;
+            border-right: 2px solid #fff; font-size: 14px; }
+.suivi li.fait { background: #a9dfbf; color: #1e5631; }
+.suivi li.actuel { background: var(--bleu); color: #fff; font-weight: bold; }
+.suivi li.ko-etape { background: var(--rouge); color: #fff; }
+
+@media (max-width: 700px) {
+    .conteneur { margin: 12px; padding: 14px; }
+    table { font-size: 13px; }
+    .suivi { flex-direction: column; }
+}
