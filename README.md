@@ -1,124 +1,68 @@
-# LabConnect - Plateforme de Gestion d'Analyses Médicales
-
-Projet développé à l'**École Supérieure Privée d'Ingénierie et de Technologies (Esprit)** - TP Projet Technologies Web, 2ème année cycle ingénieur (2A10), année académique 2026-2027.
-
-## Description
-
-LabConnect est une plateforme web qui accompagne le patient avant, pendant et après une analyse médicale : recherche de laboratoire, réservation de rendez-vous, résultats en ligne avec suivi de santé, notifications et réclamations.
-
-- **Objectif** : simplifier le parcours du patient et la gestion des laboratoires.
-- **Problème résolu** : éviter les déplacements et l'attente inutiles en permettant de comparer les laboratoires, réserver un créneau et consulter ses résultats en ligne.
-
-## Table des Matières
-
-- [Description](#description)
-- [Fonctionnalités](#fonctionnalités)
-- [Stack Technique](#stack-technique)
-- [Architecture](#architecture)
-- [Installation](#installation)
-- [Utilisation](#utilisation)
-- [Contributions](#contributions)
-- [Licence](#licence)
-
-## Fonctionnalités
-
-### Front Office (Espace Patient)
-
-- Recherche de laboratoires et comparaison des prix
-- Réservation de rendez-vous par créneau horaire (avec code QR)
-- Consultation des résultats en ligne et suivi de l'évolution de la santé
-- Gestion et suivi des réclamations
-- Demandes de prélèvement à domicile
-
-### Back Office (Espace Administration)
-
-- Gestion des laboratoires et des analyses médicales
-- Validation et gestion des créneaux horaires
-- Suivi des rendez-vous des patients
-- Gestion des notifications et des rappels automatiques par e-mail
-
-## Stack Technique
-
-### Frontend
-
-- HTML, CSS, Bootstrap, Tailwind CSS, JavaScript
-
-### Backend
-
-- PHP (Architecture MVC)
-- MySQL
-
-## Architecture
-
-Architecture MVC : `Controllers`, `Models`, `Views` (partials, layout, pages), avec une séparation claire entre le **Front Office** et le **Back Office**.
-
-## Installation
-
-1. Clonez le repository :
-
-   ```bash
+LabConnect - Medical Analysis Management Platform
+Overview
+This project was developed as part of the PW (Projet Technologies Web) – 2nd Year Engineering Program at Esprit School of Engineering (Academic Year 2026–2027).
+LabConnect is a web platform that supports the patient before, during and after a medical analysis: laboratory search, appointment booking, online results with health tracking, notifications and complaints.
+Goal: simplify the patient journey and the management of laboratories.
+Problem solved: avoid unnecessary travel and waiting by letting patients compare laboratories, book a time slot and consult their results online.
+Table of Contents
+Overview
+Features
+Tech Stack
+Architecture
+Contributors
+Academic Context
+Getting Started
+Acknowledgments
+Features
+Front Office (Patient Area)
+Laboratory search and price comparison
+Appointment booking by time slot (with QR code)
+Online results and health evolution tracking
+Complaint management and follow-up
+Home sampling requests
+Back Office (Administration Area)
+Management of laboratories and medical analyses
+Validation and management of time slots
+Follow-up of patients' appointments
+Management of notifications and automatic e-mail reminders
+Tech Stack
+Frontend
+HTML, CSS, Bootstrap, Tailwind CSS, JavaScript
+Backend
+PHP (MVC architecture)
+MySQL
+Architecture
+MVC architecture: `Controllers`, `Models`, `Views` (partials, layout, pages), with a clear separation between the Front Office and the Back Office.
+Contributors
+Name	Module
+Farah Ghanney	Appointments (Rendez-vous)
+Meriam Filali	Laboratories
+Iyed Mhadhbi	Results
+Amine Dorai	Complaints
+Ahmed Bnmakki	
+Yessine Ben Taleb	Home sampling
+Academic Context
+Developed at Esprit School of Engineering – Tunisia
+PW – 2A10 | 2026–2027
+Getting Started
+Clone the repository:
+```bash
    git clone https://github.com/farah1300/Esprit-PW-2A10-2026-LabConnect.git
    cd Esprit-PW-2A10-2026-LabConnect
    ```
-
-2. Si vous utilisez WAMP ou XAMPP :
-
-   * Placez le projet dans le dossier `www` (WAMP) ou `htdocs` (XAMPP).
-   * Démarrez **Apache** et **MySQL** depuis l'interface de WAMP/XAMPP.
-   * Accédez au projet via [http://localhost/Esprit-PW-2A10-2026-LabConnect](http://localhost/Esprit-PW-2A10-2026-LabConnect).
-
-## Utilisation
-
-### Prérequis
-
-Pour utiliser ce projet, vous devez installer **PHP** (inclus dans XAMPP et WAMP) :
-
-1. Téléchargez XAMPP : [XAMPP](https://www.apachefriends.org/fr/index.html) ou WampServer : [WampServer](https://www.wampserver.com/).
-2. Vérifiez l'installation de PHP dans un terminal :
-
-   ```bash
+If you use WAMP or XAMPP:
+Place the project in the `www` (WAMP) or `htdocs` (XAMPP) folder.
+Start Apache and MySQL from the WAMP/XAMPP interface.
+Open the project at http://localhost/Esprit-PW-2A10-2026-LabConnect.
+Check your PHP installation:
+```bash
    php -v
    ```
-
-### Module Rendez-vous (maquette HTML/CSS)
-
-Le dossier `labconnect-rdv/` contient la maquette du module **Gestion des rendez-vous**. Pour la consulter, ouvrez simplement `labconnect-rdv/index.html` dans un navigateur.
-
-- `front/` : `rdv_start`, `login`, `register`, `rdv_create`, `rdv_mine`, `rdv_detail`
-- `back/` : `rendezvous` (liste + filtre par statut), `rendezvous_form`, `rendezvous_detail`
-- `public/` : `css`, `js`, `img`
-
-Parcours patient : **inscription** → **prise de rendez-vous** (analyse + créneau + ordonnance optionnelle) → **Mes RDV** (statut *En attente* jusqu'à confirmation, QR code remis une fois confirmé, annulation possible).
-
-## Contributions
-
-Nous remercions tous ceux qui ont contribué à ce projet !
-
-### Contributeurs
-
-| Nom | Module |
-|-----|--------|
-| [Farah Ghanney](https://github.com/farah1300) | Rendez-vous |
-| Meriam Filali | Laboratoires |
-| Iyed Mhadhbi | Résultats |
-| Amine Dorai | Réclamations |
-| Ahmed Bnmakki | |
-| Yessine Ben Taleb | Prélèvement à domicile |
-
-### Comment contribuer ?
-
-1. **Fork le projet** : allez sur la page GitHub du projet et cliquez sur le bouton **Fork** pour créer une copie dans votre compte.
-2. **Clonez votre fork** :
-
-   ```bash
-   git clone https://github.com/votre-utilisateur/Esprit-PW-2A10-2026-LabConnect.git
-   cd Esprit-PW-2A10-2026-LabConnect
-   ```
-
-3. **Créez une branche** : `git checkout -b ma-fonctionnalite`
-4. **Validez vos modifications** : `git add .` puis `git commit -m "description"`
-5. **Poussez** : `git push origin ma-fonctionnalite`, puis ouvrez une **pull request**.
-
-## Licence
-
-Projet académique réalisé à Esprit (2026-2027), à usage pédagogique uniquement. Aucune licence open source n'est appliquée pour le moment.
+Appointments module (HTML/CSS prototype)
+The `labconnect-rdv/` folder contains the prototype of the Appointments module. Open `labconnect-rdv/index.html` in a browser to view it.
+`front/`: `rdv_start`, `login`, `register`, `rdv_create`, `rdv_mine`, `rdv_detail`
+`back/`: `rendezvous` (list with status filter), `rendezvous_form`, `rendezvous_detail`
+`public/`: `css`, `js`, `img`
+Patient flow: sign up → book an appointment (analysis + time slot + optional prescription) → My appointments (status En attente until confirmed, QR code issued once confirmed, cancellation possible).
+Acknowledgments
+We would like to thank Esprit School of Engineering and our professors and tutors for their guidance and support throughout this project.
