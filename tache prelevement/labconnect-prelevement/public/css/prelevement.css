@@ -1,5 +1,5 @@
 body { font-family: Arial, sans-serif; background: #f4f6f8; }
-.conteneur { max-width: 800px; margin: 30px auto; background: #fff; padding: 20px; border-radius: 8px; }
+.conteneur { max-width: 900px; margin: 30px auto; background: #fff; padding: 20px; border-radius: 8px; }
 table { width: 100%; border-collapse: collapse; }
 th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
 label { display: block; margin-top: 12px; font-weight: bold; }
@@ -7,3 +7,17 @@ input, select { width: 100%; padding: 8px; box-sizing: border-box; }
 .erreur, .ko { color: #c0392b; font-size: 14px; }
 .ok { color: #1e8449; }
 .btn { background: #2c7be5; color: #fff; padding: 8px 14px; text-decoration: none; border-radius: 4px; }
+
+/* Formulaire de recherche */
+.recherche { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end;
+             background: #f0f4f8; padding: 12px; border-radius: 6px; margin-bottom: 16px; }
+.recherche > div { flex: 1 1 160px; }
+.recherche label { margin-top: 0; }
+
+/* Chronologie du suivi */
+.suivi { list-style: none; display: flex; padding: 0; margin: 20px 0; }
+.suivi li { flex: 1; text-align: center; padding: 10px 4px; background: #e5e8eb;
+            color: #777; border-right: 2px solid #fff; font-size: 14px; }
+.suivi li.fait { background: #a9dfbf; color: #1e5631; }
+.suivi li.actuel { background: #2c7be5; color: #fff; font-weight: bold; }
+.suivi li.ko-etape { background: #c0392b; color: #fff; }

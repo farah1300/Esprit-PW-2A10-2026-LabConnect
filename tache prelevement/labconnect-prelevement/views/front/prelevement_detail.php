@@ -1,13 +1,44 @@
+<?php
+// Chronologie du suivi
+$etapes = [
+    'en_attente' => 'En attente',
+    'confirme'   => 'Confirmée',
+    'en_cours'   => 'En cours',
+    'effectue'   => 'Effectuée',
+];
+$ordre = array_keys($etapes);
+$pos = array_search($p['statut'], $ordre);
+$termine = ($p['statut'] === 'refuse' || $p['statut'] === 'annule');
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Détails de la demande</title>
+    <title>Suivi de la demande</title>
     <link rel="stylesheet" href="public/css/prelevement.css">
 </head>
 <body>
 <div class="conteneur">
-    <h1>Détails de la demande #<?= (int)$p['id'] ?></h1>
+    <h1>Suivi de la demande #<?= (int)$p['id'] ?></h1>
+
+    <ol class="suivi">
+        <?php foreach ($ordre as $i => $cle): ?>
+            <?php
+            $classe = '';
+            if ($termine) {
+                $classe = ($i === 0) ? 'fait' : '';
+            } elseif ($pos !== false && $i < $pos) {
+                $classe = 'fait';
+            } elseif ($pos !== false && $i === $pos) {
+                $classe = 'actuel';
+            }
+            ?>
+            <li class="<?= $classe ?>"><?= $etapes[$cle] ?></li>
+        <?php endforeach; ?>
+        <?php if ($termine): ?>
+            <li class="actuel ko-etape"><?= $p['statut'] === 'refuse' ? 'Refusée' : 'Annulée' ?></li>
+        <?php endif; ?>
+    </ol>
 
     <table>
         <tr><th>Statut</th><td><?= htmlspecialchars(str_replace('_', ' ', $p['statut'])) ?></td></tr>

@@ -4,6 +4,9 @@ require_once __DIR__ . "/../config/database.php";
 class Prelevement {
     private $db;
 
+    // Tous les statuts possibles (utilises par les filtres de recherche)
+    private $statuts = ['en_attente', 'confirme', 'en_cours', 'effectue', 'refuse', 'annule'];
+
     // Ordre des statuts que le responsable peut faire avancer
     private $statutSuivant = [
         'confirme' => 'en_cours',
@@ -14,17 +17,24 @@ class Prelevement {
         $this->db = Database::getConnexion();
     }
 
+    public function getStatuts() {
+        return $this->statuts;
+    }
+
     /* ===================== FRONTOFFICE (patient) ===================== */
 
-    public function getAll($idUtilisateur) {
-        $q = $this->db->prepare(
-            "SELECT p.*, a.rue, a.ville
-             FROM prelevement p
-             JOIN adresse a ON a.id = p.id_adresse
-             WHERE p.id_utilisateur = ?
-             ORDER BY p.id DESC"
-        );
-        $q->execute([$idUtilisateur]);
+    // Liste du patient, avec filtres facultatifs: statut, date, motif
+    public function rechercher($idUtilisateur, $f) {
+        $sql = "SELECT p.*, a.rue, a.ville
+                FROM prelevement p
+                JOIN adresse a ON a.id = p.id_adresse
+                WHERE p.id_utilisateur = ?";
+        $params = [$idUtilisateur];
+        $this->appliquerFiltres($sql, $params, $f);
+        $sql .= " ORDER BY p.id DESC";
+
+        $q = $this->db->prepare($sql);
+        $q->execute($params);
         return $q->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -70,14 +80,18 @@ class Prelevement {
 
     /* ===================== BACKOFFICE (responsable) ===================== */
 
-    // Toutes les demandes, de tous les patients
-    public function getAllAdmin() {
-        $q = $this->db->query(
-            "SELECT p.*, a.rue, a.ville
-             FROM prelevement p
-             JOIN adresse a ON a.id = p.id_adresse
-             ORDER BY p.id DESC"
-        );
+    // Toutes les demandes, avec filtres facultatifs: statut, date, motif, patient
+    public function rechercherAdmin($f) {
+        $sql = "SELECT p.*, a.rue, a.ville
+                FROM prelevement p
+                JOIN adresse a ON a.id = p.id_adresse
+                WHERE 1 = 1";
+        $params = [];
+        $this->appliquerFiltres($sql, $params, $f);
+        $sql .= " ORDER BY p.id DESC";
+
+        $q = $this->db->prepare($sql);
+        $q->execute($params);
         return $q->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -132,5 +146,27 @@ class Prelevement {
         );
         $q->execute([$suivant, $id, $p['statut']]);
         return $q->rowCount() > 0;
+    }
+
+    /* ===================== OUTIL INTERNE ===================== */
+
+    // Ajoute a la requete les filtres renseignes (requetes preparees)
+    private function appliquerFiltres(&$sql, &$params, $f) {
+        if (!empty($f['statut'])) {
+            $sql .= " AND p.statut = ?";
+            $params[] = $f['statut'];
+        }
+        if (!empty($f['date'])) {
+            $sql .= " AND p.date_prelevement = ?";
+            $params[] = $f['date'];
+        }
+        if (!empty($f['motif'])) {
+            $sql .= " AND p.motif LIKE ?";
+            $params[] = '%' . $f['motif'] . '%';
+        }
+        if (!empty($f['patient'])) {
+            $sql .= " AND p.id_utilisateur = ?";
+            $params[] = (int)$f['patient'];
+        }
     }
 }

@@ -24,12 +24,48 @@
         <a href="index.php?action=adresse_liste">Mes adresses</a>
     </p>
 
+    <form id="formRecherche" class="recherche" method="get" action="index.php" novalidate>
+        <input type="hidden" name="action" value="prelevement_liste">
+
+        <div>
+            <label for="statut">Statut</label>
+            <select id="statut" name="statut">
+                <option value="">Tous</option>
+                <?php foreach ($statuts as $s): ?>
+                    <option value="<?= $s ?>" <?= ($filtres['statut'] === $s) ? 'selected' : '' ?>>
+                        <?= htmlspecialchars(str_replace('_', ' ', $s)) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+            <span class="erreur" id="err_statut"><?= $erreursFiltre['statut'] ?? '' ?></span>
+        </div>
+
+        <div>
+            <label for="date">Date (AAAA-MM-JJ)</label>
+            <input type="text" id="date" name="date" placeholder="2026-12-15"
+                   value="<?= htmlspecialchars($filtres['date']) ?>">
+            <span class="erreur" id="err_date"><?= $erreursFiltre['date'] ?? '' ?></span>
+        </div>
+
+        <div>
+            <label for="motif">Motif (mot-clé)</label>
+            <input type="text" id="motif" name="motif" placeholder="Bilan"
+                   value="<?= htmlspecialchars($filtres['motif']) ?>">
+            <span class="erreur" id="err_motif"><?= $erreursFiltre['motif'] ?? '' ?></span>
+        </div>
+
+        <div>
+            <button type="submit">Rechercher</button>
+            <a href="index.php?action=prelevement_liste">Réinitialiser</a>
+        </div>
+    </form>
+
     <table>
         <tr>
             <th>Date</th><th>Heure</th><th>Motif</th><th>Adresse</th><th>Statut</th><th>Actions</th>
         </tr>
         <?php if (empty($prelevements)): ?>
-            <tr><td colspan="6">Aucune demande enregistrée.</td></tr>
+            <tr><td colspan="6">Aucune demande trouvée.</td></tr>
         <?php endif; ?>
         <?php foreach ($prelevements as $p): ?>
         <tr>
@@ -39,7 +75,7 @@
             <td><?= htmlspecialchars($p['rue'] . ', ' . $p['ville']) ?></td>
             <td><?= htmlspecialchars(str_replace('_', ' ', $p['statut'])) ?></td>
             <td>
-                <a href="index.php?action=prelevement_detail&id=<?= $p['id'] ?>">Détails</a>
+                <a href="index.php?action=prelevement_detail&id=<?= $p['id'] ?>">Suivre / Détails</a>
                 <?php if ($p['statut'] === 'en_attente'): ?>
                     <a href="index.php?action=prelevement_modifier&id=<?= $p['id'] ?>">Modifier</a>
                     <form method="post" action="index.php?action=prelevement_annuler&id=<?= $p['id'] ?>"
@@ -52,5 +88,6 @@
         <?php endforeach; ?>
     </table>
 </div>
+<script src="public/js/recherche.js"></script>
 </body>
 </html>

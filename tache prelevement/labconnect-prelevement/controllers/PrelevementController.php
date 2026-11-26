@@ -12,8 +12,23 @@ class PrelevementController {
         $this->adresseModel = new Adresse();
     }
 
+    // Liste du patient + recherche (statut, date, motif)
     public function liste() {
-        $prelevements = $this->model->getAll($this->idUtilisateur);
+        $filtres = [
+            'statut' => trim($_GET['statut'] ?? ''),
+            'date'   => trim($_GET['date'] ?? ''),
+            'motif'  => trim($_GET['motif'] ?? ''),
+        ];
+        $statuts = $this->model->getStatuts();
+        $erreursFiltre = $this->validerFiltres($filtres, $statuts);
+
+        // Un filtre invalide est ignore dans la requete
+        $filtresValides = $filtres;
+        foreach ($erreursFiltre as $champ => $msg) {
+            $filtresValides[$champ] = '';
+        }
+
+        $prelevements = $this->model->rechercher($this->idUtilisateur, $filtresValides);
         $message = $_GET['msg'] ?? '';
         require __DIR__ . "/../views/front/prelevement_liste.php";
     }
@@ -126,6 +141,24 @@ class PrelevementController {
 
         if (strlen($d['motif']) < 3 || strlen($d['motif']) > 150) {
             $e['motif'] = "Le motif doit contenir entre 3 et 150 caractères.";
+        }
+        return $e;
+    }
+
+    // Validation des filtres de recherche (tous facultatifs)
+    private function validerFiltres($f, $statuts) {
+        $e = [];
+        if ($f['statut'] !== '' && !in_array($f['statut'], $statuts)) {
+            $e['statut'] = "Statut invalide.";
+        }
+        if ($f['date'] !== '') {
+            $d = DateTime::createFromFormat('Y-m-d', $f['date']);
+            if (!$d || $d->format('Y-m-d') !== $f['date']) {
+                $e['date'] = "La date doit être valide, au format AAAA-MM-JJ.";
+            }
+        }
+        if (strlen($f['motif']) > 100) {
+            $e['motif'] = "Le mot-clé ne doit pas dépasser 100 caractères.";
         }
         return $e;
     }
