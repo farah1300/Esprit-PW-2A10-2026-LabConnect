@@ -1,0 +1,8 @@
+node_modules/
+back/node_modules/
+back/data/*.json
+back/data/*.tmp
+back/data/documents/*
+!back/data/.gitkeep
+!back/data/documents/.gitkeep
+.DS_Store

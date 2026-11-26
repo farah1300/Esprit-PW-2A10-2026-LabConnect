@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4A1E56">
+  <meta name="description" content="LabConnect : saisie, validation et publication des résultats d'analyses.">
+  <title>LabConnect – Résultats d'analyses</title>
+  <link rel="icon" href="/images/favicon.png">
+
+  <!-- Police -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&amp;display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- En-tête + navigation : généré par common.js (renderTopBar) -->
+  <header id="topbar" data-active="resultats"></header>
+
+  <main>
+
+    <!-- ========== TITRE DE LA PAGE ========== -->
+    <section class="page-head" aria-labelledby="titre-page">
+      <div>
+        <h1 id="titre-page">Résultats d'analyses</h1>
+        <p>Saisir, valider et publier les résultats. Les patients ne voient que les résultats publiés qui les concernent.</p>
+      </div>
+      <a class="btn" id="add" href="/admin/ajouter-resultat.html" title="Ajouter un nouveau résultat d'analyse">
+        <span aria-hidden="true">+</span> Nouveau résultat
+      </a>
+    </section>
+
+    <!-- ========== STATISTIQUES ========== -->
+    <section aria-labelledby="titre-stats">
+      <h2 id="titre-stats" class="sr-only">Statistiques des résultats</h2>
+      <dl class="stats">
+        <div class="stat">
+          <dt><small>Total</small></dt>
+          <dd id="s-all">0</dd>
+        </div>
+        <div class="stat b">
+          <dt><small>Brouillons</small></dt>
+          <dd id="s-b">0</dd>
+        </div>
+        <div class="stat v">
+          <dt><small>Validés</small></dt>
+          <dd id="s-v">0</dd>
+        </div>
+        <div class="stat o">
+          <dt><small>Publiés</small></dt>
+          <dd id="s-p">0</dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- Messages dynamiques (annoncés par les lecteurs d'écran) -->
+    <div class="alert" id="msg" role="status" aria-live="polite"></div>
+
+    <!-- ========== RECHERCHE / FILTRES ========== -->
+    <section aria-labelledby="titre-recherche">
+      <h2 id="titre-recherche" class="sr-only">Recherche et filtres</h2>
+
+      <form class="bar" id="search" role="search" onsubmit="return false">
+
+        <label for="q" class="sr-only">Rechercher un résultat</label>
+        <input type="search" id="q" name="q"
+               placeholder="Rechercher les résultats d'un patient (nom, e-mail, référence, analyse)…"
+               autocomplete="off">
+
+        <label for="st" class="sr-only">Filtrer par statut</label>
+        <select id="st" name="statut">
+          <option value="" selected>Tous les statuts</option>
+          <option value="brouillon">brouillon</option>
+          <option value="validé">validé</option>
+          <option value="publié">publié</option>
+        </select>
+
+        <label for="pt" class="sr-only">Filtrer par patient</label>
+        <select id="pt" name="patient">
+          <option value="" selected>Tous les patients</option>
+        </select>
+
+      </form>
+    </section>
+
+    <!-- ========== TABLEAU DES RÉSULTATS ========== -->
+    <section class="table-wrap" aria-labelledby="titre-tableau">
+      <h2 id="titre-tableau" class="sr-only">Liste des résultats</h2>
+
+      <table>
+        <caption class="sr-only">Liste des résultats d'analyses avec leur statut et leur paiement</caption>
+        <thead>
+          <tr>
+            <th scope="col">Référence</th>
+            <th scope="col">Patient</th>
+            <th scope="col">Analyse</th>
+            <th scope="col">Statut</th>
+            <th scope="col">Paiement</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="rows" aria-live="polite"></tbody>
+      </table>
+
+      <p class="empty" id="empty" role="status">Aucun résultat.</p>
+    </section>
+
+  </main>
+
+  <script src="common.js"></script>
+  <script src="resultats.js"></script>
+</body>
+</html>
